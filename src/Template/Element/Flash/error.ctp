@@ -1,0 +1,1 @@
+<?= $this->element('Bootstrap/alert',['class' => 'danger', 'title' => $this->element('Bootstrap/icon', ['icon' => 'alert']) .' Ooops', 'message' => h($message), 'dismissible' => true]); ?>

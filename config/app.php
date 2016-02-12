@@ -1,19 +1,17 @@
 <?php
-	/* 
+	/*
 	 * SET THE DATABASE TO USE BASED ON THE PATH
 	 * Dev site path must contain 'dev', set database name for dev
 	 * Test site path must contain 'test', set database name for test
 	 * Any other path will go to Prod database, set name for prod
 	 */
-	 
+	$db_user     = 'your_db_user';
+	$db_password = 'your_password';
 	if(strpos($_SERVER['SERVER_NAME'], 'dev') !== false) {
-		$database = 'jaambazc_cake3dev';
-		$debug = true;
-	} else if(strpos($_SERVER['SERVER_NAME'], 'test') !== false) {
-		$database = 'jaambazc_cake3test';
+		$database = 'dev_db';
 		$debug = true;
 	} else {
-		$database = 'jaambazc_cake3prod';
+		$database = 'prod_db';
 		$debug = false;
 	}
 
@@ -235,8 +233,8 @@ return [
              * the following line and set the port accordingly
              */
             //'port' => 'non_standard_port_number',
-            'username' => 'jaambazc_c3',
-            'password' => 'D,lMH7.+.+$i',
+            'username' => $db_user,
+            'password' => $db_password,
             'database' => $database,
             'encoding' => 'utf8',
             'timezone' => 'UTC',

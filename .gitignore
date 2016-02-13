@@ -3,3 +3,6 @@
 .DS_Store
 tags
 config/app.php
+logs/*
+webroot/error_log
+tmp/*

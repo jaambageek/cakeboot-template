@@ -34,16 +34,18 @@ class SiteManagerHelper extends Helper
       if($user) {
         return [
           'links' => [
-            'Profile' => 'profile',
-            'Logout' => 'logout'
+            'Profile' => '/profile',
+            'Logout' => '/logout'
           ],
           'dropdown' => $user,
-          'right' => true
+          'right' => true,
+          'debug' => true
         ];
       } else {
         return [
-          'links' => ['Login' => 'login'],
-          'right' => true
+          'links' => ['Login' => '/login'],
+          'right' => true,
+          'debug' => true
         ];
       }
     }

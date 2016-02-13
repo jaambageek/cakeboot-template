@@ -42,12 +42,7 @@ $cakeDescription = 'Cake3Template';
     <?= $this->fetch('script') ?>
 </head>
 <body>
-	<div class="modal fade" tabindex="-1" role="dialog">
-		<div class="modal-dialog">
-			<div class="modal-content" id="theModal">
-			</div><!-- /.modal-content -->
-		</div><!-- /.modal-dialog -->
-	</div><!-- /.modal -->
+	<?= $this->element('SiteManager.Bootstrap/modal'); ?>
 	<?php
     $user_nav = $this->SiteManager->user_nav();
     $sitemgr_nav = $this->SiteManager->sitemgr_nav();

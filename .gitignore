@@ -1,5 +1,5 @@
-.git
 .metadata
 .ftpconfig
 .DS_Store
 tags
+config/app.php

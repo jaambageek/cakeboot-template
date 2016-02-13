@@ -1,15 +1,15 @@
-<?php 
+<?php
 	use Cake\Utility\Inflector;
-	
+
 	/* ELEMENT HELP */
-	
+
 	// REQUIRED VARIABLES
 	if(!isset($element)) $element = 'no';
 	if(!isset($options)) $options = null;
 ?>
 <h3>Element Help - <strong><?= Inflector::humanize($element) ?></strong></h3>
 <p class="lead">Usage</p>
-<pre>echo $this->element('Bootstrap/<?= $element ?>', ['option' => 'value', 'option2' => 'value2']);</pre>
+<pre>echo $this->element('SiteManager.Bootstrap/<?= $element ?>', ['option' => 'value', 'option2' => 'value2']);</pre>
 <?php if($options != null):?>
 <p class="lead">Options</p>
 <table class="table table-bordered table-condensed">

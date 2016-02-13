@@ -57,17 +57,7 @@ $cakeDescription = 'Cake3Template';
 				'links' => ['Link' => '/']
 			],
       'user_nav' => $user_nav,
-			'sitemgr_nav' => $sitemgr_nav,
-			'nav4' => [
-				'links' => [
-					'Bootstrap Editor' => '/bootstrap-toolkit/bsPalettes/index',
-					'Bootstrap Help' => '/bootstrap-toolkit/pages/bootstrapHelp',
-					'Icons' => '/bootstrap-toolkit/icons'
-				],
-				'dropdown' => 'Bootstrap',
-				'right' => true,
-				'debug' => true
-			]
+			'sitemgr_nav' => $sitemgr_nav
 		];
 
 		$brand = [

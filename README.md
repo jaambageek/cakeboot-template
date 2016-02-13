@@ -12,4 +12,6 @@ Also includes Bootstrap 3.3.6 found here: [Bootstrap](http://getbootstrap.com/).
 
 1. Update the database connection information in config/app.php
 2. Update the Security salt also in config/app.php
-3. Go to your website and start coding!
+3. Launch your website.
+4. From the Navbar select 'Tables'.
+5. Initialize tables for all necessary plugins.

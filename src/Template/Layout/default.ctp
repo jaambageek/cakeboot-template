@@ -28,7 +28,7 @@ $cakeDescription = 'Cake3Template';
 
     <?= $this->Html->css('bootstrap.min.css') ?>
     <?= $this->Html->css('overrides.css') ?>
-    
+
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -55,9 +55,10 @@ $cakeDescription = 'Cake3Template';
 			'nav2' => [
 				'links' => [
 					'Deliver' => '/update/files',
+          'Tables' => '/update/tables',
 					'Read Me' => '/pages/readme',
 					'Cake Status' => '/pages/cake_status'
-				], 
+				],
 				'right' => true,
 				'debug' => true
 			],
@@ -67,14 +68,14 @@ $cakeDescription = 'Cake3Template';
 					'Bootstrap Help' => '/bootstrap-toolkit/pages/bootstrapHelp',
 					'Icons' => '/bootstrap-toolkit/icons'
 				],
-				'dropdown' => 'Bootstrap', 
+				'dropdown' => 'Bootstrap',
 				'right' => true,
 				'debug' => true
 			]
 		];
-		
+
 		$brand = [
-			'name' => 'Cake 3 Template', 
+			'name' => 'Cake 3 Template',
 			'logo' => 'logo.png'
 		];
 	?>

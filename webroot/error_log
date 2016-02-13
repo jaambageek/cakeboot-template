@@ -30,3 +30,19 @@
 [11-Feb-2016 20:02:26 UTC] PHP Fatal error:  Class 'UpdateManager\Controller\Time' not found in /home6/jaambazc/public_html/cake_3/z_template/development/plugins/UpdateManager/src/Controller/FilesController.php on line 20
 [11-Feb-2016 20:07:29 UTC] PHP Fatal error:  Call to undefined method Cake\Filesystem\File::path() in /home6/jaambazc/public_html/cake_3/z_template/development/plugins/UpdateManager/src/Controller/FilesController.php on line 22
 [11-Feb-2016 20:13:33 UTC] PHP Parse error:  syntax error, unexpected 'echo' (T_ECHO) in /home6/jaambazc/public_html/cake_3/z_template/development/plugins/UpdateManager/src/Template/Files/index.ctp on line 18
+[13-Feb-2016 00:25:54 UTC] PHP Fatal error:  Class 'Muffin\OAuth2\Auth\OAuthAuthenticate' not found in /home6/jaambazc/public_html/cake_3/z_template/development/plugins/CakeDC/Users/src/Auth/SocialAuthenticate.php on line 33
+[13-Feb-2016 00:29:18 UTC] PHP Fatal error:  Class 'CakeDC\Users\Migrations\Migrations' not found in /home6/jaambazc/public_html/cake_3/z_template/development/src/Template/Pages/tables.ctp on line 8
+[13-Feb-2016 00:29:46 UTC] PHP Fatal error:  Class 'CakeDC\Users\Migrations' not found in /home6/jaambazc/public_html/cake_3/z_template/development/src/Template/Pages/tables.ctp on line 8
+[13-Feb-2016 00:30:06 UTC] PHP Fatal error:  Class 'CakeDC\Users\config\Migrations' not found in /home6/jaambazc/public_html/cake_3/z_template/development/src/Template/Pages/tables.ctp on line 8
+[13-Feb-2016 11:42:18 UTC] PHP Fatal error:  Class 'Muffin\OAuth2\Auth\OAuthAuthenticate' not found in /home6/jaambazc/public_html/cake_3/z_template/development/plugins/CakeDC/Users/src/Auth/SocialAuthenticate.php on line 33
+[13-Feb-2016 11:52:21 UTC] PHP Fatal error:  Class 'Muffin\OAuth2\Auth\OAuthAuthenticate' not found in /home6/jaambazc/public_html/cake_3/z_template/development/plugins/CakeDC/Users/src/Auth/SocialAuthenticate.php on line 33
+[13-Feb-2016 12:12:49 UTC] PHP Fatal error:  [Cake\View\Exception\MissingHelperException] Helper class AuthHelper could not be found.
+#0 /home6/jaambazc/public_html/cake_3/z_template/development/vendor/cakephp/cakephp/src/Core/ObjectRegistry.php(91): Cake\View\HelperRegistry->_throwMissingClassError('Auth', NULL)
+#1 /home6/jaambazc/public_html/cake_3/z_template/development/vendor/cakephp/cakephp/src/View/View.php(1023): Cake\Core\ObjectRegistry->load('Auth', Array)
+#2 /home6/jaambazc/public_html/cake_3/z_template/development/src/View/AppView.php(41): Cake\View\View->loadHelper('Auth')
+#3 /home6/jaambazc/public_html/cake_3/z_template/development/vendor/cakephp/cakephp/src/View/View.php(344): App\View\AppView->initialize()
+#4 /home6/jaambazc/public_html/cake_3/z_template/development/vendor/cakephp/cakephp/src/View/ViewBuilder.php(350): Cake\View\View->__construct(Object(Cake\Network\Request), Object(Cake\Network\Response), Object(Cake\Event\EventManager), Array)
+#5 /home6/jaambazc/public_html/cake_3/z_template/development/vendor/cakephp/cakephp/src/View/V in /home6/jaambazc/public_html/cake_3/z_template/development/vendor/cakephp/cakephp/src/Error/ErrorHandler.php on line 156
+[13-Feb-2016 14:24:31 UTC] PHP Fatal error:  Call to a member function f_name() on null in /home6/jaambazc/public_html/cake_3/z_template/development/plugins/SiteManager/src/View/Helper/SiteManagerHelper.php on line 32
+[13-Feb-2016 14:26:27 UTC] PHP Parse error:  syntax error, unexpected '$this' (T_VARIABLE), expecting function (T_FUNCTION) in /home6/jaambazc/public_html/cake_3/z_template/development/plugins/SiteManager/src/View/Helper/SiteManagerHelper.php on line 11
+[13-Feb-2016 14:26:53 UTC] PHP Fatal error:  Call to a member function f_name() on null in /home6/jaambazc/public_html/cake_3/z_template/development/plugins/SiteManager/src/View/Helper/SiteManagerHelper.php on line 33

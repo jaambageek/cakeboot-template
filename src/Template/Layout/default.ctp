@@ -26,8 +26,8 @@ $cakeDescription = 'Cake3Template';
     </title>
     <?= $this->Html->meta('icon') ?>
 
-    <?= $this->Html->css('bootstrap.min.css') ?>
-    <?= $this->Html->css('font-awesome.min.css') ?>
+    <?= $this->Html->css('SiteManager.bootstrap.min') ?>
+    <?= $this->Html->css('SiteManager.font-awesome.min') ?>
     <?= $this->Html->css('overrides.css') ?>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -49,38 +49,15 @@ $cakeDescription = 'Cake3Template';
 		</div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->
 	<?php
-    $user = $this->User->f_name();
-    if($user) {
-      $user_menu = [
-        'links' => [
-          'Profile' => 'profile',
-          'Logout' => 'logout'
-        ],
-        'dropdown' => $user,
-        'right' => true
-      ];
-    } else {
-      $user_menu = [
-        'links' => ['Login' => 'login'],
-        'right' => true
-      ];
-    }
+    $user_nav = $this->SiteManager->user_nav();
+    $sitemgr_nav = $this->SiteManager->sitemgr_nav();
 
 		$navs = [
 			'nav1' => [
 				'links' => ['Link' => '/']
 			],
-      'nav2' => $user_menu,
-			'nav3' => [
-				'links' => [
-					'Deliver' => '/update/files',
-          'Tables' => '/update/tables',
-					'Read Me' => '/pages/readme',
-					'Cake Status' => '/pages/cake_status'
-				],
-				'right' => true,
-				'debug' => true
-			],
+      'user_nav' => $user_nav,
+			'sitemgr_nav' => $sitemgr_nav,
 			'nav4' => [
 				'links' => [
 					'Bootstrap Editor' => '/bootstrap-toolkit/bsPalettes/index',
@@ -98,7 +75,7 @@ $cakeDescription = 'Cake3Template';
 			'logo' => 'logo.png'
 		];
 	?>
-	<?= $this->element('Bootstrap/navbar', ['navs' => $navs, 'fixed' => 'top', 'brand' => $brand]); ?>
+	<?= $this->element('SiteManager.Bootstrap/navbar', ['navs' => $navs, 'fixed' => 'top', 'brand' => $brand]); ?>
 	<div class="container-fluid clearfix">
 		<?= $this->Flash->render() ?>
 		<?= $this->fetch('content') ?>
@@ -108,6 +85,6 @@ $cakeDescription = 'Cake3Template';
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
-	<?= $this->Html->script('bootstrap.min.js') ?>
+	<?= $this->Html->script('SiteManager.bootstrap.min') ?>
 </body>
 </html>

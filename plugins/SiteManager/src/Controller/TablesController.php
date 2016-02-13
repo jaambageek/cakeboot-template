@@ -1,7 +1,7 @@
 <?php
-	namespace UpdateManager\Controller;
+	namespace SiteManager\Controller;
 
-	use UpdateManager\Controller\AppController;
+	use SiteManager\Controller\AppController;
   use Migrations\Migrations;
 
 	class TablesController extends AppController
@@ -26,7 +26,7 @@
         } else {
           $this->Flash->error('User table creation failed.');
         }
-        $this->redirect('/update/tables');
+        $this->redirect('/sitemgr/tables');
       }
 
       public function remove($table = null) {
@@ -39,7 +39,7 @@
         } else {
           $this->Flash->error('User table removal failed.');
         }
-        $this->redirect('/update/tables');
+        $this->redirect('/sitemgr/tables');
       }
 	}
 ?>

@@ -182,7 +182,7 @@ Request::addDetector('tablet', function ($request) {
 
 Plugin::load('Migrations');
 //Plugin::load('BootstrapToolkit', ['bootstrap' => true, 'routes' => true]);
-Plugin::load('UpdateManager', ['routes' => true, 'autoload' => true]);  // Autoload required since can't use Composer to refresh the json file.
+Plugin::load('SiteManager', ['routes' => true, 'autoload' => true]);  // Autoload required since can't use Composer to refresh the json file.
 
 Configure::write('CakeDC/Users.config', ['users']);
 Plugin::load('CakeDC/Users', ['routes' => true, 'bootstrap' => true, 'autoload' => true]);

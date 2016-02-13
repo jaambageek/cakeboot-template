@@ -1,17 +1,17 @@
 <?php
-	namespace UpdateManager\Controller;
-	
-	use UpdateManager\Controller\AppController;
+	namespace SiteManager\Controller;
+
+	use SiteManager\Controller\AppController;
 	use Cake\Filesystem\Folder;
 	use Cake\Filesystem\File;
 	use Cake\I18n\Time;
-	
+
 	class FilesController extends AppController
 	{
 	    public function index()
 	    {
 	    	$files = [];
-	    	
+
 		$d = 0;
 		$dir = new Folder(dirname('../src'));
 		$files_dev = $dir->find('.*');
@@ -23,7 +23,7 @@
 		}
 		$ud = $d; // Unique Files Dev. Will Subtract 1 for each file match.
 		$nd = 0; // Newer Files Dev.
-		
+
 		$p = 0;
 		$up = 0;
 		$np = 0;
@@ -35,7 +35,7 @@
 			$name = $file->name;
 			$date = Time::createFromTimestamp(round($file->lastChange()/60)*60);
 			$files[$file->name]['prod_date'] = $date;
-			
+
 			if(!empty($files[$name]['dev_date'])) {
 				$ud--;
 				if($date < $files[$name]['dev_date']) $nd++;
@@ -43,10 +43,10 @@
 				else unset($files[$name]);
 			} else {
 				$up++;
-			} 
+			}
 			$p++;
 		}
-		
+
 		$stats = [
 	    		'files_dev'   => $d,
 	    		'files_prod'  => $p,
@@ -55,7 +55,7 @@
 	    		'newer_dev'   => $nd,
 	    		'newer_prod'  => $np
 	    	];
-	    	
+
 		$this->set('files', $files);
 		$this->set('stats', $stats);
 	    }

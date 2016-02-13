@@ -2,8 +2,8 @@
 use Cake\Routing\Router;
 
 Router::plugin(
-    'UpdateManager',
-    ['path' => '/update'],
+    'SiteManager',
+    ['path' => '/sitemgr'],
     function ($routes) {
         $routes->fallbacks('DashedRoute');
     }

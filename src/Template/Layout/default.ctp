@@ -27,6 +27,7 @@ $cakeDescription = 'Cake3Template';
     <?= $this->Html->meta('icon') ?>
 
     <?= $this->Html->css('bootstrap.min.css') ?>
+    <?= $this->Html->css('font-awesome.min.css') ?>
     <?= $this->Html->css('overrides.css') ?>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -48,11 +49,29 @@ $cakeDescription = 'Cake3Template';
 		</div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->
 	<?php
+    $user = $this->User->f_name();
+    if($user) {
+      $user_menu = [
+        'links' => [
+          'Profile' => 'profile',
+          'Logout' => 'logout'
+        ],
+        'dropdown' => $user,
+        'right' => true
+      ];
+    } else {
+      $user_menu = [
+        'links' => ['Login' => 'login'],
+        'right' => true
+      ];
+    }
+
 		$navs = [
 			'nav1' => [
 				'links' => ['Link' => '/']
 			],
-			'nav2' => [
+      'nav2' => $user_menu,
+			'nav3' => [
 				'links' => [
 					'Deliver' => '/update/files',
           'Tables' => '/update/tables',
@@ -62,7 +81,7 @@ $cakeDescription = 'Cake3Template';
 				'right' => true,
 				'debug' => true
 			],
-			'nav3' => [
+			'nav4' => [
 				'links' => [
 					'Bootstrap Editor' => '/bootstrap-toolkit/bsPalettes/index',
 					'Bootstrap Help' => '/bootstrap-toolkit/pages/bootstrapHelp',

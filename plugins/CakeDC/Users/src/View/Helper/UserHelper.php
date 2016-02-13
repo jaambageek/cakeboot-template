@@ -101,6 +101,21 @@ class UserHelper extends Helper
     }
 
     /**
+     * User First Name
+     * Added by ValliereBrothers
+     * @return mixed
+     */
+    public function f_name()
+    {
+        $userId = $this->request->session()->read('Auth.User.id');
+        if (empty($userId)) {
+            return;
+        }
+        
+        return $this->request->session()->read('Auth.User.first_name');
+    }
+
+    /**
      * Welcome display
      * @return mixed
      */

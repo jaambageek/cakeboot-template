@@ -63,6 +63,7 @@ $cakeDescription = 'Cake3Template';
 	<?= $this->element('SiteManager.Bootstrap/navbar', ['navs' => $navs, 'fixed' => 'top', 'brand' => $brand]); ?>
 	<div class="container-fluid clearfix">
 		<?= $this->Flash->render() ?>
+		<?= $this->Flash->render('auth') ?>
 		<?= $this->fetch('content') ?>
 	</div>
 	<footer>

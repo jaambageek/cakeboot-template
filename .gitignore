@@ -6,3 +6,5 @@ config/app.php
 logs/*
 webroot/error_log
 tmp/*
+.project
+.settings

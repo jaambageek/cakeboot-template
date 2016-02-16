@@ -26,7 +26,7 @@
 
 <div class="btn-group<?php if($vertical) echo ' btn-group-vertical' ?><?php if(!empty($size)) echo ' btn-group-'. $size ?><?php if($justified) echo ' btn-group-justified' ?>" role="group" aria-label="<?= $label ?>">
 	<?php foreach($buttons as $button): ?>
-		<?= $this->element('Bootstrap/button', $button); ?>
+		<?= $this->element('SiteManager.Bootstrap/button', $button); ?>
 	<?php endforeach; ?>
 </div>
 

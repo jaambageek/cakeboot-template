@@ -8,59 +8,62 @@
  * @copyright Copyright 2010 - 2015, Cake Development Corporation (http://cakedc.com)
  * @license MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
+ 
+  use Cake\I18n\Time;
 ?>
-<div class="actions columns large-2 medium-3">
-    <h3><?= __d('Users', 'Actions') ?></h3>
-    <ul class="side-nav">
-        <li><?= $this->Html->link(__d('Users', 'Edit User'), ['action' => 'edit', $Users->id]) ?> </li>
-        <li><?= $this->Form->postLink(__d('Users', 'Delete User'), ['action' => 'delete', $Users->id], ['confirm' => __d('Users', 'Are you sure you want to delete # {0}?', $Users->id)]) ?> </li>
-        <li><?= $this->Html->link(__d('Users', 'List Users'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__d('Users', 'New User'), ['action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__d('Users', 'List Accounts'), ['controller' => 'Accounts', 'action' => 'index']) ?> </li>
-    </ul>
-</div>
-<div class="users view large-10 medium-9 columns">
-    <h2><?= h($Users->id) ?></h2>
-    <div class="row">
-        <div class="large-5 columns strings">
-            <h6 class="subheader"><?= __d('Users', 'Id') ?></h6>
-            <p><?= h($Users->id) ?></p>
-            <h6 class="subheader"><?= __d('Users', 'Username') ?></h6>
-            <p><?= h($Users->username) ?></p>
-            <h6 class="subheader"><?= __d('Users', 'Email') ?></h6>
-            <p><?= h($Users->email) ?></p>
-            <h6 class="subheader"><?= __d('Users', 'First Name') ?></h6>
-            <p><?= h($Users->first_name) ?></p>
-            <h6 class="subheader"><?= __d('Users', 'Last Name') ?></h6>
-            <p><?= h($Users->last_name) ?></p>
-            <h6 class="subheader"><?= __d('Users', 'Token') ?></h6>
-            <p><?= h($Users->token) ?></p>
-            <h6 class="subheader"><?= __d('Users', 'Api Token') ?></h6>
-            <p><?= h($Users->api_token) ?></p>
-        </div>
-        <div class="large-2 columns numbers end">
-            <h6 class="subheader"><?= __d('Users', 'Active') ?></h6>
-            <p><?= $this->Number->format($Users->active) ?></p>
-        </div>
-        <div class="large-2 columns dates end">
-            <h6 class="subheader"><?= __d('Users', 'Token Expires') ?></h6>
-            <p><?= h($Users->token_expires) ?></p>
-            <h6 class="subheader"><?= __d('Users', 'Activation Date') ?></h6>
-            <p><?= h($Users->activation_date) ?></p>
-            <h6 class="subheader"><?= __d('Users', 'Tos Date') ?></h6>
-            <p><?= h($Users->tos_date) ?></p>
-            <h6 class="subheader"><?= __d('Users', 'Created') ?></h6>
-            <p><?= h($Users->created) ?></p>
-            <h6 class="subheader"><?= __d('Users', 'Modified') ?></h6>
-            <p><?= h($Users->modified) ?></p>
-        </div>
-    </div>
-</div>
-<div class="related row">
-    <div class="column large-12">
+<div class="row">
+	<?= $this->element('admin_panel'); ?>
+	<div class="col-xs-12 col-sm-10">
+		<?= $this->element('SiteManager.Bootstrap/page_header', ['title' => h($Users->first_name .' '. $Users->last_name)]); ?>
+        <h4 class="subheader"><?= __d('Users', 'User Info') ?></h4>
+        <table class="table">
+        	<tbody>
+        		<tr>
+        			<td><?= __d('Users', 'Id') ?></td>
+        			<th><?= h($Users->id) ?></th>
+        		</tr>
+        		<tr>
+        			<td><?= __d('Users', 'Username') ?></td>
+        			<th><?= h($Users->username) ?></th>
+        		</tr>
+        		<tr>
+        			<td><?= __d('Users', 'Email') ?></td>
+        			<th><?= h($Users->email) ?></th>
+        		</tr>
+        		<tr>
+        			<td><?= __d('Users', 'Name') ?></td>
+        			<th><?= h($Users->first_name .' '. $Users->last_name) ?></th>
+        		</tr>
+        		<tr>
+        			<td><?= __d('Users', 'Active') ?></td>
+        			<th><?php if($Users->active) echo "Yes" ?></th>
+        		</tr>
+        		<tr>
+        			<td><?= __d('Users', 'Admin') ?></td>
+        			<th><?php if($Users->is_superuser) echo "Yes" ?></th>
+        		</tr>
+        		<tr>
+        			<td><?= __d('Users', 'Activation Date') ?></td>
+        			<th><?= h($Users->activation_date->nice()) ?></th>
+        		</tr>
+        		<tr>
+        			<td><?= __d('Users', 'Tos Date') ?></td>
+        			<th><?= h($Users->tos_date->nice()) ?></th>
+        		</tr>
+        		<tr>
+        			<td><?= __d('Users', 'Created') ?></td>
+        			<th><?= h($Users->created->nice()) ?></th>
+        		</tr>
+        		<tr>
+        			<td><?= __d('Users', 'Modified') ?></td>
+        			<th><?= h($Users->modified->nice()) ?></th>
+        		</tr>
+        	</tbody>
+        </table>
+
         <h4 class="subheader"><?= __d('Users', 'Related Accounts') ?></h4>
         <?php if (!empty($Users->social_accounts)): ?>
-            <table cellpadding="0" cellspacing="0">
+            <table class="table">
                 <tr>
                     <th><?= __d('Users', 'Id') ?></th>
                     <th><?= __d('Users', 'User Id') ?></th>
@@ -100,9 +103,8 @@
 
                         </td>
                     </tr>
-
-        <?php endforeach; ?>
-            </table>
-            <?php endif; ?>
+        		<?php endforeach; ?>
+        	</table>
+        <?php endif; ?>
     </div>
 </div>

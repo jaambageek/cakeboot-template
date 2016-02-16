@@ -20,6 +20,8 @@
 	if(!isset($class)) $class = 'info';
 	if(!isset($title)) $title = $class;
 	if(!isset($message)) $message = 'No detail provided.';
+	
+	if($class == 'error') $class = 'danger';
 ?>
 
 <div class="alert alert-<?= $class ?> <?php if($dismissible) echo 'alert-dismissible' ?>" role="alert">

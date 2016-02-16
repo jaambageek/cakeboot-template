@@ -10,13 +10,12 @@
  */
 ?>
 <div class="users form">
-    <?= $this->Flash->render() ?>
     <?= $this->Form->create('User') ?>
     <fieldset>
         <legend><?= __d('Users', 'Please enter your email') ?></legend>
         <?= $this->Form->input('email') ?>
     </fieldset>
     <?= $this->User->addReCaptcha(); ?>
-    <?= $this->Form->button(__d('Users', 'Submit')); ?>
+    <?= $this->Form->button(__d('Users', 'Submit'), ['templateVars' => ['class' => 'primary']]); ?>
     <?= $this->Form->end() ?>
 </div>

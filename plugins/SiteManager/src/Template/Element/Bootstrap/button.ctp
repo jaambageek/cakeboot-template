@@ -28,7 +28,7 @@
 	$vars = '';
 	if(!empty($attrs)) {
 		foreach($attrs as $key => $value) {
-			$vars .= $key .'="'. $value .'"';
+			$vars .= ' '. $key .'="'. $value .'"';
 		}
 	}
 ?>

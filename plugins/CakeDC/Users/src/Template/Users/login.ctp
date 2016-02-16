@@ -12,23 +12,36 @@
 use Cake\Core\Configure;
 
 ?>
-<div class="users form">
-    <?= $this->Flash->render('auth') ?>
-    <?= $this->Form->create() ?>
-    <fieldset>
-        <legend><?= __d('Users', 'Please enter your username and password') ?></legend>
-        <?= $this->Form->input('username', ['required' => true]) ?>
-        <?= $this->Form->input('password', ['required' => true]) ?>
-        <?php
-        if (Configure::check('Users.RememberMe.active')) {
-            echo $this->Form->input(Configure::read('Users.Key.Data.rememberMe'), [
-                'type' => 'checkbox',
-                'label' => __d('Users', 'Remember me'),
-                'checked' => 'checked'
-            ]);
-        }
-        ?>
-        <p>
+<div class="row">
+	<div class="col-xs-12 col-sm-6 col-sm-offset-3">
+	    <?= $this->element('SiteManager.Bootstrap/page_header', ['title' => 'Login']); ?>
+	    <?= $this->Form->create() ?>
+	    <fieldset>
+	        <legend><?= __d('Users', 'Please enter your username and password') ?></legend>
+	        <?= $this->Form->input('username', ['required' => true]) ?>
+	        <?= $this->Form->input('password', ['required' => true]) ?>
+	        <?php
+	        if (Configure::check('Users.RememberMe.active')) {
+	            echo $this->Form->input(Configure::read('Users.Key.Data.rememberMe'), [
+	                'type' => 'checkbox',
+	                'label' => __d('Users', 'Remember me'),
+	                'checked' => 'checked'
+	            ]);
+	        }
+	        ?>
+	    </fieldset>
+	    <?php if (Configure::read('Users.Social.login')) : ?>
+	        <?php $providers = Configure::read('OAuth.providers'); ?>
+	        <?php foreach ($providers as $provider => $options) : ?>
+	            <?php if (!empty($options['options']['redirectUri'])) : ?>
+	                <?= $this->User->socialLogin($provider); ?>
+	            <?php endif; ?>
+	        <?php endforeach; ?>
+	    <?php endif; ?>
+	    <?= $this->Form->button(__d('Users', 'Login'), ['templateVars' => ['class' => 'primary']]); ?>
+	    <?= $this->Form->end() ?>
+	    <br />
+	    <p>
             <?php
             $registrationActive = Configure::read('Users.Registration.active');
             if ($registrationActive) {
@@ -42,16 +55,5 @@ use Cake\Core\Configure;
             }
             ?>
         </p>
-    </fieldset>
-    <?php if (Configure::read('Users.Social.login')) : ?>
-        <?php $providers = Configure::read('OAuth.providers'); ?>
-        <?php foreach ($providers as $provider => $options) : ?>
-            <?php if (!empty($options['options']['redirectUri'])) : ?>
-                <?= $this->User->socialLogin($provider); ?>
-            <?php endif; ?>
-        <?php endforeach; ?>
-    <?php
-    endif; ?>
-    <?= $this->Form->button(__d('Users', 'Login')); ?>
-    <?= $this->Form->end() ?>
+	</div>
 </div>

@@ -44,19 +44,19 @@
         		</tr>
         		<tr>
         			<td><?= __d('Users', 'Activation Date') ?></td>
-        			<th><?= h($Users->activation_date->nice()) ?></th>
+        			<th><?= h(Time::parse($Users->activation_date)->nice()) ?></th>
         		</tr>
         		<tr>
         			<td><?= __d('Users', 'Tos Date') ?></td>
-        			<th><?= h($Users->tos_date->nice()) ?></th>
+        			<th><?= h(Time::parse($Users->tos_date)->nice()) ?></th>
         		</tr>
         		<tr>
         			<td><?= __d('Users', 'Created') ?></td>
-        			<th><?= h($Users->created->nice()) ?></th>
+        			<th><?= h(Time::parse($Users->created)->nice()) ?></th>
         		</tr>
         		<tr>
         			<td><?= __d('Users', 'Modified') ?></td>
-        			<th><?= h($Users->modified->nice()) ?></th>
+        			<th><?= h(Time::parse($Users->modified)->nice()) ?></th>
         		</tr>
         	</tbody>
         </table>

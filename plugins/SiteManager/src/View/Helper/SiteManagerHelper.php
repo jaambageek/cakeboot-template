@@ -17,14 +17,17 @@ class SiteManagerHelper extends Helper
     {
         return [
           'links' => [
+          	'Users' => '/users/users',
+          	'divider1' => 'divider',
             'Deliver' => '/sitemgr/files',
             'Tables' => '/sitemgr/tables',
+            'divider2' => 'divider',
             'Read Me' => '/sitemgr/pages/readme',
             'Cake Status' => '/sitemgr/pages/cake_status'
           ],
           'dropdown' => 'Site Manager',
           'right' => true,
-          'debug' => true
+          'show' => 'admin'
         ];
     }
 
@@ -35,17 +38,18 @@ class SiteManagerHelper extends Helper
         return [
           'links' => [
             'Profile' => '/profile',
+            'divider1' => 'divider',
             'Logout' => '/logout'
           ],
           'dropdown' => $user,
           'right' => true,
-          'debug' => true
+          'show' => 'user'
         ];
       } else {
         return [
           'links' => ['Login' => '/login'],
           'right' => true,
-          'debug' => true
+          'show' => 'all'
         ];
       }
     }

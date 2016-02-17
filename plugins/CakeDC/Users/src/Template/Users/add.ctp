@@ -21,7 +21,9 @@
 	            echo $this->Form->input('password');
 	            echo $this->Form->input('first_name');
 	            echo $this->Form->input('last_name');
-	            echo $this->Form->input('active', ['type' => 'checkbox']);
+	            echo $this->Form->input('role');
+				echo $this->Form->input('is_superuser', ['label' => 'Admin']);
+	            echo $this->Form->input('active');
 	        ?>
 	    </fieldset>
 	    <?= $this->Form->button(__d('Users', 'Submit'), ['templateVars' => ['class' => 'primary']]) ?>

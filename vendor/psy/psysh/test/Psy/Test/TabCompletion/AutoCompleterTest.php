@@ -75,9 +75,8 @@ class AutoCompleterTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * TODO
+     * 
      * ====
-     * draft, open to modifications
      * - [ ] if the variable is an array, return the square bracket for completion
      * - [ ] if the variable is a constructor or method, reflect to complete as a function call
      * - [ ] if the preceding token is a variable, call operators or keywords compatible for completion

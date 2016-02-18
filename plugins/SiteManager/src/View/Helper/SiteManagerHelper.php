@@ -17,12 +17,13 @@ class SiteManagerHelper extends Helper
     {
         return [
           'links' => [
-          	'Users' => '/users/users',
-          	'divider1' => 'divider',
-            'Deliver' => '/sitemgr/files',
-            'Tables' => '/sitemgr/tables',
-            'divider2' => 'divider',
-            'Read Me' => '/sitemgr/pages/readme',
+          	'Users'       => '/users/users',
+          	'Permissions' => '/sitemgr/pages/permissions',
+          	'divider1'    => 'divider',
+            'Deliver'     => '/sitemgr/files',
+            'Tables'      => '/sitemgr/tables',
+            'divider2'    => 'divider',
+            'Read Me'     => '/sitemgr/pages/readme',
             'Cake Status' => '/sitemgr/pages/cake_status'
           ],
           'dropdown' => 'Site Manager',

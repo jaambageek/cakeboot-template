@@ -89,7 +89,7 @@ class GNUReadline implements Readline
         //
         //     https://github.com/php/php-src/blob/423a057023ef3c00d2ffc16a6b43ba01d0f71796/NEWS#L19-L21
         //
-        // TODO: add a PHP version check after next point release
+        // Removed task from comment. SPV
         if (!ini_get('open_basedir')) {
             readline_read_history();
         }

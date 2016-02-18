@@ -7,4 +7,5 @@ class PagesController extends AppController
 {
   public function readme() {}
   public function cakeStatus() {}
+  public function permissions() {}
 }

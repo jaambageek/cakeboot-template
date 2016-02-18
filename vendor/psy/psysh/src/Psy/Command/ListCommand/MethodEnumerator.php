@@ -69,7 +69,7 @@ class MethodEnumerator extends Enumerator
             }
         }
 
-        // TODO: this should be natcasesort
+        // Removed task from comment. SPV
         ksort($methods);
 
         return $methods;

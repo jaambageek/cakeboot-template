@@ -170,7 +170,7 @@ class Name extends NodeAbstract
      * @return static Sliced name
      */
     public function slice($offset) {
-        // TODO negative offset and length
+        // Removed task from comment. SPV
         if ($offset < 0 || $offset > count($this->parts)) {
             throw new \OutOfBoundsException(sprintf('Offset %d is out of bounds', $offset));
         }

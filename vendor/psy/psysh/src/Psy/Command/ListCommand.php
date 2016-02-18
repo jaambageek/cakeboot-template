@@ -121,7 +121,7 @@ HELP
             $reflector = null;
         }
 
-        // TODO: something cleaner than this :-/
+        // Removed task from comment. SPV
         if ($input->getOption('long')) {
             $output->startPaging();
         }

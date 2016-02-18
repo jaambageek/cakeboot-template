@@ -69,7 +69,7 @@ class PropertyEnumerator extends Enumerator
             }
         }
 
-        // TODO: this should be natcasesort
+        // Removed task from comment. SPV
         ksort($properties);
 
         return $properties;
@@ -148,8 +148,7 @@ class PropertyEnumerator extends Enumerator
     protected function presentValue(\ReflectionProperty $property, $target)
     {
         if (!is_object($target)) {
-            // TODO: figure out if there's a way to return defaults when target
-            // is a class/interface/trait rather than an object.
+            // Removed task from comment. SPV
             return '';
         }
 

@@ -187,7 +187,7 @@ abstract class AbstractCommand extends Command
         $cwd = getcwd();
 
         // locate the phinx config file (default: phinx.yml)
-        // TODO - In future walk the tree in reverse (max 10 levels)
+        // Removed task from comment. SPV
         $locator = new FileLocator(array(
             $cwd . DIRECTORY_SEPARATOR
         ));

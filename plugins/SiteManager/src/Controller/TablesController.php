@@ -6,6 +6,7 @@
 
 	class TablesController extends AppController
 	{
+		// TODO - If User management isn't turned on yet, any user needs to be able to do this.
 	    public function index()
 	    {
         $user_migrations = new Migrations(['source' => '../plugins/CakeDC/Users/config/Migrations']);

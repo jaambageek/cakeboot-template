@@ -54,7 +54,7 @@ class ParserTest extends \PHPUnit_Framework_TestCase
 
                 $test = $parser->parse($yaml);
                 if (isset($test['todo']) && $test['todo']) {
-                    // TODO
+                    // Removed task from comment. SPV
                 } else {
                     eval('$expected = '.trim($test['php']).';');
 

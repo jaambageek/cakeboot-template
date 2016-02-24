@@ -25,8 +25,7 @@ abstract class NamespaceAwarePass extends CodeCleanerPass
     protected $currentScope;
 
     /**
-     * TODO: should this be final? Extending classes should be sure to either
-     * use afterTraverse or call parent::beforeTraverse() when overloading.
+     * Removed task from comment. SPV
      *
      * Reset the namespace and the current scope before beginning analysis.
      */
@@ -37,8 +36,7 @@ abstract class NamespaceAwarePass extends CodeCleanerPass
     }
 
     /**
-     * TODO: should this be final? Extending classes should be sure to either use
-     * leaveNode or call parent::enterNode() when overloading.
+     * Removed task from comment. SPV
      *
      * @param Node $node
      */

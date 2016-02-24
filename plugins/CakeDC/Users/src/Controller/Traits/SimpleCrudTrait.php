@@ -108,6 +108,36 @@ trait SimpleCrudTrait
         }
         $this->Flash->error(__d('Users', 'The {0} could not be saved', $singular));
     }
+	
+	/**
+     * Super User method (for toggling is_superuser)
+     *
+     * @param string|null $id User id.
+     * @return void Redirects to requesting page.
+     * @throws NotFoundException When record not found.
+     */
+    public function superuser($id = null)
+    {
+        $table = $this->loadModel();
+        $tableAlias = $table->alias();
+        $entity = $table->get($id, [
+            'contain' => []
+        ]);
+        $this->set($tableAlias, $entity);
+        $this->set('tableAlias', $tableAlias);
+        $this->set('_serialize', [$tableAlias, 'tableAlias']);
+        
+		  // TOGGLE THE is_superuser FIELD
+        $entity['is_superuser'] = !$entity['is_superuser'];
+		
+        $singular = Inflector::singularize(Inflector::humanize($tableAlias));
+        if ($table->save($entity)) {
+            $this->Flash->success(__d('Users', 'The {0} has been saved', $singular));
+        } else {
+	        $this->Flash->error(__d('Users', 'The {0} could not be saved', $singular));
+		}
+		return $this->redirect($this->referer());
+    }
 
     /**
      * Delete method

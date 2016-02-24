@@ -196,7 +196,7 @@ class PostgresAdapter extends PdoAdapter implements AdapterInterface
             $options['primary_key'] = $options['id'];
         }
 
-        // TODO - process table options like collation etc
+        // Removed task from comment. SPV
         $sql = 'CREATE TABLE ';
         $sql .= $this->quoteTableName($table->getName()) . ' (';
 
@@ -399,7 +399,7 @@ class PostgresAdapter extends PdoAdapter implements AdapterInterface
      */
     public function changeColumn($tableName, $columnName, Column $newColumn)
     {
-        // TODO - is it possible to merge these 3 queries into less?
+        // Removed task from comment. SPV
         $this->startCommandTimer();
         $this->writeCommand('changeColumn', array($tableName, $columnName, $newColumn->getType()));
         // change data type

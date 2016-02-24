@@ -92,7 +92,7 @@ EOF;
                 if (isset($test['dump_skip']) && $test['dump_skip']) {
                     continue;
                 } elseif (isset($test['todo']) && $test['todo']) {
-                    // TODO
+                    // Removed task from comment. SPV
                 } else {
                     eval('$expected = '.trim($test['php']).';');
                     $this->assertSame($expected, $this->parser->parse($this->dumper->dump($expected, 10)), $test['test']);

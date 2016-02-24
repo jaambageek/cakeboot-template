@@ -78,7 +78,7 @@ class Init extends Command
         }
 
         // Compute the file path
-        $fileName = 'phinx.yml'; // TODO - maybe in the future we allow custom config names.
+        $fileName = 'phinx.yml'; // Removed task from comment. SPV
         $filePath = $path . DIRECTORY_SEPARATOR . $fileName;
 
         if (file_exists($filePath)) {

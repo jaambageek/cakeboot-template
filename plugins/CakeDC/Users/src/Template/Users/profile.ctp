@@ -32,7 +32,7 @@
 				</tr>
 				<tr>
 					<td><?= __d('Users', 'Member Since') ?></td>
-					<th><?= $user->activation_date->nice(); ?></th>
+					<th><?= Time::parse($user->activation_date)->nice(); ?></th>
 				</tr>
 				<?php if (!empty($user->is_superuser)): ?>
 				<tr>

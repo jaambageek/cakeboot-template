@@ -250,7 +250,7 @@ class Environment
     public function getCurrentVersion()
     {
         // We don't cache this code as the current version is pretty volatile.
-        // TODO - that means they're no point in a setter then?
+        // Removed task from comment. SPV
         // maybe we should cache and call a reset() method everytime a migration is run
         $versions = $this->getVersions();
         $version = 0;

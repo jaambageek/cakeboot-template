@@ -231,7 +231,7 @@ class MysqlAdapter extends PdoAdapter implements AdapterInterface
             $options['primary_key'] = $options['id'];
         }
 
-        // TODO - process table options like collation etc
+        // Removed task from comment. SPV
 
         // process table engine (default to InnoDB)
         $optionsStr = 'ENGINE = InnoDB';

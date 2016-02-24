@@ -51,23 +51,12 @@
 
 return [
     'Users.SimpleRbac.permissions' => [
-        [
+    	[
             'role' => 'user',
             'plugin' => 'CakeDC/Users',
             'controller' => 'Users',
-            'action' => ['register', 'edit', 'view'],
-        ],
-        [
-            'role' => 'user',
-            'plugin' => 'CakeDC/Users',
-            'controller' => 'Users',
-            'action' => '*',
-            'allowed' => false,
-        ],
-        [
-            'role' => ['user'],
-            'controller' => ['Pages'],
-            'action' => ['other', 'display'],
+            'action' => ['profile','logout'],
             'allowed' => true,
         ],
-        ]];
+	]
+];

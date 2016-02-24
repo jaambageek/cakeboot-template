@@ -383,7 +383,7 @@ class SQLiteAdapter extends PdoAdapter implements AdapterInterface
     public function changeColumn($tableName, $columnName, Column $newColumn)
     {
 
-        // TODO: DRY this up....
+        // Removed task from comment. SPV
 
         $this->startCommandTimer();
         $this->writeCommand('changeColumn', array($tableName, $columnName, $newColumn->getType()));
@@ -445,7 +445,7 @@ class SQLiteAdapter extends PdoAdapter implements AdapterInterface
      */
     public function dropColumn($tableName, $columnName)
     {
-        // TODO: DRY this up....
+        // Removed task from comment. SPV
 
         $this->startCommandTimer();
         $this->writeCommand('dropColumn', array($tableName, $columnName));
@@ -703,7 +703,7 @@ class SQLiteAdapter extends PdoAdapter implements AdapterInterface
      */
     public function addForeignKey(Table $table, ForeignKey $foreignKey)
     {
-        // TODO: DRY this up....
+        // Removed task from comment. SPV
         $this->startCommandTimer();
         $this->writeCommand('addForeignKey', array($table->getName(), $foreignKey->getColumns()));
         $this->execute('pragma foreign_keys = ON');
@@ -747,7 +747,7 @@ class SQLiteAdapter extends PdoAdapter implements AdapterInterface
      */
     public function dropForeignKey($tableName, $columns, $constraint = null)
     {
-        // TODO: DRY this up....
+        // Removed task from comment. SPV
 
         $this->startCommandTimer();
         if (is_string($columns)) {

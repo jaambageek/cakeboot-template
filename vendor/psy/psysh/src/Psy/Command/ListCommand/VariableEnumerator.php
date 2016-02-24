@@ -85,7 +85,7 @@ class VariableEnumerator extends Enumerator
             } elseif ($b === '_') {
                 return -1;
             } else {
-                // TODO: this should be natcasesort
+                // Removed task from comment. SPV
                 return strcasecmp($a, $b);
             }
         });
@@ -119,7 +119,7 @@ class VariableEnumerator extends Enumerator
                 $ret[$fname] = array(
                     'name'  => $fname,
                     'style' => in_array($name, self::$specialVars) ? self::IS_PRIVATE : self::IS_PUBLIC,
-                    'value' => $this->presentRef($val), // TODO: add types to variable signatures
+                    'value' => $this->presentRef($val), // Removed task from comment. SPV
                 );
             }
         }

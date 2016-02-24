@@ -39,7 +39,7 @@ class PanelsController extends Controller
      */
     public function beforeFilter(Event $event)
     {
-        // TODO add config override.
+        // Removed task from comment. SPV
         if (!Configure::read('debug')) {
             throw new NotFoundException();
         }

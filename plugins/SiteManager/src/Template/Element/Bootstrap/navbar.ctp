@@ -5,6 +5,7 @@ use Cake\Core\Configure;
 use Cake\Datasource\ConnectionManager;
 use Cake\Error\Debugger;
 use Cake\Network\Exception\NotFoundException;
+use Cake\View\HelperRegistry;
 
 	/* BOOTSTRAP NAVBAR TEMPLATE */
 	
@@ -16,8 +17,9 @@ use Cake\Network\Exception\NotFoundException;
 				'class' => ['"default"','Navbar style (<code>"default"</code>, <code>"inverted"</code>).'],
 				'fixed' => ['false','Whether or not the navbar is fixed to the top/bottom of the page (<code>"top"</code>, <code>"bottom"</code>).'],
 				'brand' => ['[\'name\' => \'Brand\']','The brand name and logo (<code>[\'name\' => \'Your Brand\', \'logo\' => \'logo.png\']</code>).'],
-				'navs'  => ['[\'nav\' => [\'links\' => [], \'right\' => true, \'debug\' => false]]','An array of navs for the navbar. Set <code>right</code> to true to pull a nav to the right.'],
-				'links' => ['[\'Link\' => \'/\', \'Link 2\' => \'/\']','The array of links for a nav (used in <code>navs</code> above).']
+				'navs'  => ['[\'nav\' => [\'links\' => [], \'right\' => true, \'show\' => \'all\']]','An array of navs for the navbar. Set <code>right</code> to true to pull a nav to the right.'],
+				'links' => ['[\'Link\' => \'/\', \'Link 2\' => \'/\']','The array of links for a nav (used in <code>navs</code> above).'],
+				'show'  => ['"all"' => 'Whether or not the nav is displayed (<code>"all"</code> = Everyone, <code>"user"</code> = Logged in users, <code>"admin"</code> = Administrators).']
 			]
 		]);
 	}
@@ -27,7 +29,12 @@ use Cake\Network\Exception\NotFoundException;
 	if(!isset($class)) $class = 'default';
 	if(!isset($fixed)) $fixed = false;
 	if(!isset($brand)) $brand = ['name' => 'Brand'];
-	if(!isset($navs))  $navs  = ['nav' => ['links' => ['Link' => '/', 'Link 2' => '/'], 'right' => true, 'debug' => false]];
+	if(!isset($navs))  $navs  = ['nav' => ['links' => ['Link' => '/', 'Link 2' => '/'], 'right' => true, 'show' => 'all']];
+	
+	$this->loadHelper('User');
+	
+	$user  = $this->User->f_name();
+	$admin = $this->User->admin();
 ?>
 
 <nav class="navbar navbar-<?= $class ?><?php if($fixed) echo ' navbar-fixed-'. $fixed; ?>">
@@ -54,7 +61,8 @@ use Cake\Network\Exception\NotFoundException;
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse" id="navbar-collapse-1">
 				<?php foreach($navs as $nav): ?>
-					<?php if((empty($nav['debug'])) || (Configure::read('debug'))): ?>
+					<?php if(!isset($nav['show'])) $nav['show'] = 'all'; ?>
+					<?php if(($nav['show'] == 'all') || (($nav['show'] == 'user') && (!empty($user))) || (!empty($admin))): ?>
 						<?php if(empty($nav['dropdown'])): ?>
 							<ul class="nav navbar-nav<?php if(isset($nav['right'])) echo ' navbar-right' ?>">
 								<?php foreach($nav['links'] as $name => $link): ?>
@@ -67,7 +75,13 @@ use Cake\Network\Exception\NotFoundException;
 									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?= $nav['dropdown'] ?> <span class="caret"></span></a>
 									<ul class="dropdown-menu">
 										<?php foreach($nav['links'] as $name => $link): ?>
-											<li><a href="<?= $link ?>"><?= $name ?></a></li>
+											<?php if($link == 'divider'): ?>
+												<li role="separator" class="divider"></li>
+											<?php elseif($link == 'header'): ?>
+												<li class="dropdown-header"><?= $name ?></li>
+											<?php else: ?>
+												<li><a href="<?= $link ?>"><?= $name ?></a></li>
+											<?php endif;?>
 										<?php endforeach; ?>
 									</ul>
 								</li>

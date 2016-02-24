@@ -115,6 +115,21 @@ class UserHelper extends Helper
         return $this->request->session()->read('Auth.User.first_name');
     }
 
+	/**
+     * User is Admin
+     * Added by ValliereBrothers
+     * @return mixed
+     */
+    public function admin()
+    {
+        $userId = $this->request->session()->read('Auth.User.id');
+        if (empty($userId)) {
+            return;
+        }
+        
+        return $this->request->session()->read('Auth.User.is_superuser');
+    }
+
     /**
      * Welcome display
      * @return mixed

@@ -20,6 +20,6 @@
 ?>
 
 <h3><?= $title?></h3>
-<p><?= $body ?></p>
+<p class="lead"><?= $body ?></p>
 
 <?php if(!empty($help)) echo '</div>'; ?>

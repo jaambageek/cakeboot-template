@@ -28,6 +28,7 @@ $cakeDescription = 'Cake3Template';
 
     <?= $this->Html->css('SiteManager.bootstrap.min') ?>
     <?= $this->Html->css('SiteManager.font-awesome.min') ?>
+    <?= $this->Html->css('SiteManager.sitemgr-overrides.css') ?>
     <?= $this->Html->css('overrides.css') ?>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->

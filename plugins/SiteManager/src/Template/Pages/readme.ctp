@@ -15,6 +15,8 @@
 	'body' => 'Flash message formatting is typically handled from the templates in <code>src/Template/Element/Flash</code>. These have been updated to use the Bootstrap "Alert" element in the parent folder. Modifying the <code>.ctp</code> files in the Flash folder should not be necessary.'
 ]); ?>
 
+<?= $this->element('SiteManager.artifact', ['name' => 'help', 'class' => 'lead']); ?>
+
 <?= $this->element('SiteManager.Bootstrap/page_header', ['title' => 'Forms']) ?>
 <p>Below you will see examples of the different types of form elements supported by this template. These can be customized in <code>config/app_form.php</code>.</p>
 

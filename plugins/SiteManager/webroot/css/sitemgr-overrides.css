@@ -1,0 +1,109 @@
+/* ARTIFACTS */
+.artifact-public {
+	
+}
+
+.edit-button, .edit-box {
+	display:none;
+}
+
+.artifact-edit {
+	position:relative;
+}
+
+.artifact-edit:hover .edit-box{
+	border: 1px dashed #555555;
+	display:block;
+	position:absolute;
+	left:0;
+	top:0;
+	width:100%;
+	height:100%;
+	z-index:200;
+	background-color: rgba(40,40,40, 0.2);
+}
+
+.artifact-edit:hover .edit-button {
+	display:block;
+	position:absolute;
+	left:50%;
+	top:50%;
+	z-index:205;
+	margin-top:-15px;
+	margin-left:-20px;
+}
+
+/* ELEMENT HELP-BOX */
+.help-box {
+    padding: 20px;
+    margin: 20px 0;
+    border: 1px solid #5bc0de;
+    border-left-width: 10px;
+    border-radius: 5px;
+}
+
+.help-box h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: #444444;
+}
+
+
+/* BOOTSTRAP CALLOUTS */
+
+.bs-callout {
+    padding: 20px;
+    margin: 20px 0;
+    border: 1px solid #eee;
+    border-left-width: 5px;
+    border-radius: 3px;
+}
+.bs-callout h4 {
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+.bs-callout p:last-child {
+    margin-bottom: 0;
+}
+.bs-callout code {
+    border-radius: 3px;
+}
+.bs-callout+.bs-callout {
+    margin-top: -5px;
+}
+.bs-callout-default {
+    border-left-color: #777;
+}
+.bs-callout-default h4 {
+    color: #777;
+}
+.bs-callout-primary {
+    border-left-color: #428bca;
+}
+.bs-callout-primary h4 {
+    color: #428bca;
+}
+.bs-callout-success {
+    border-left-color: #5cb85c;
+}
+.bs-callout-success h4 {
+    color: #5cb85c;
+}
+.bs-callout-danger {
+    border-left-color: #d9534f;
+}
+.bs-callout-danger h4 {
+    color: #d9534f;
+}
+.bs-callout-warning {
+    border-left-color: #f0ad4e;
+}
+.bs-callout-warning h4 {
+    color: #f0ad4e;
+}
+.bs-callout-info {
+    border-left-color: #5bc0de;
+}
+.bs-callout-info h4 {
+    color: #5bc0de;
+}

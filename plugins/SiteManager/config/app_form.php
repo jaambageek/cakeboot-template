@@ -27,6 +27,6 @@
 		'select'              => '<select class="form-control" {{attrs}} name="{{name}}">{{content}}</select>',
 		'selectMultiple'      => '<select multiple class="form-control" name="{{name}}" {{attrs}}>{{content}}</select>',
 		//'submitContainer'     => '{{content}}',
-		'textarea'            => '<div class="form-group"><label for="{{name}}">{{label}}</label><textarea class="form-control" name="{{name}}" {{attrs}}>{{value}}</textarea></div>'
+		'textarea'            => '<textarea class="form-control" name="{{name}}" {{attrs}}>{{value}}</textarea>'
 	];
 ?>

@@ -26,8 +26,7 @@ $cakeDescription = 'Cake3Template';
     </title>
     <?= $this->Html->meta('icon') ?>
 
-    <?= $this->Html->css('SiteManager.bootstrap.min') ?>
-    <?= $this->Html->css('SiteManager.font-awesome.min') ?>
+    <?= $this->element('SiteManager.Layout/css'); ?>
     <?= $this->Html->css('overrides.css') ?>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -42,7 +41,7 @@ $cakeDescription = 'Cake3Template';
     <?= $this->fetch('script') ?>
 </head>
 <body>
-	<?= $this->element('SiteManager.Bootstrap/modal'); ?>
+	<?= $this->element('SiteManager.Layout/modal'); ?>
 	<?php
     $user_nav = $this->SiteManager->user_nav();
     $sitemgr_nav = $this->SiteManager->sitemgr_nav();
@@ -68,9 +67,6 @@ $cakeDescription = 'Cake3Template';
 	</div>
 	<footer>
 	</footer>
-	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	<!-- Include all compiled plugins (below), or include individual files as needed -->
-	<?= $this->Html->script('SiteManager.bootstrap.min') ?>
+	<?= $this->element('SiteManager.Layout/js'); ?>
 </body>
 </html>

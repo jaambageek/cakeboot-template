@@ -54,4 +54,19 @@ class SiteManagerHelper extends Helper
         ];
       }
     }
+
+	// ESCAPES HTML, CHANGES SINGLE LINE TO <BR> AND DOUBLE LINE TO <P>
+	// USER CAN SUPPLY A CLASS FOR THE <P> ELELEMNTS.
+	public function autoParagraph($text = null, $class = null) {
+		//$text = h($text); // SANITIZE THE PARAGRAPH
+		$paragraphs = explode(PHP_EOL.PHP_EOL, $text);
+		
+		$ret_text = '';
+		foreach($paragraphs as $paragraph) {
+			$ret_text .= '<p class="'.$class.'">'. $paragraph .'</p>';
+		}
+		
+		$ret_text = str_replace(PHP_EOL, '<br />', $ret_text);
+		return $ret_text;
+	}
 }

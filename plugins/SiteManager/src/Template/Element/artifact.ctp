@@ -1,12 +1,16 @@
 <?php
 	use Cake\ORM\TableRegistry;
 	use Cake\Core\Configure;
+	use Cake\View\Helper\TextHelper;
+	use SiteManager\View\Helper\SiteManagerHelper;
 
 	$artifacts = TableRegistry::get('Artifacts');
 	$artifact = $artifacts->find()->where(['name' => $name])->first();
 	
-	if(empty($artifact)) $id = str_replace(' ', '_', $name);
+	if(empty($artifact->id)) $id = str_replace(' ', '_', $name);
 	else $id = $artifact->id;
+	
+	if(!isset($class)) $class = '';
 ?>
 
 <?php 
@@ -19,10 +23,7 @@
 	<?php if(empty($artifact)): ?>
 		<p class="lead">Empty Artifact</p>
 	<?php elseif($artifact->type == 'text'): ?>
-		<?php $paragraphs = explode(PHP_EOL, $artifact['content']); ?>
-		<?php foreach($paragraphs as $paragraph):?>
-			<p class="<?= $class ?>"><?= $paragraph; ?></p>
-		<?php endforeach; ?>
+		<?= $this->SiteManager->autoParagraph($this->Text->autoLink($artifact->content), $class); ?>
 	<?php endif;?>
 
 	<div class="edit-box">

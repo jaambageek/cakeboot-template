@@ -15,8 +15,36 @@
 	'body' => 'Flash message formatting is typically handled from the templates in <code>src/Template/Element/Flash</code>. These have been updated to use the Bootstrap "Alert" element in the parent folder. Modifying the <code>.ctp</code> files in the Flash folder should not be necessary.'
 ]); ?>
 
-<?= $this->element('SiteManager.artifact', ['name' => 'empty']); ?>
-<?= $this->element('SiteManager.artifact', ['name' => 'help', 'class' => 'lead']); ?>
+<?= $this->element('SiteManager.Bootstrap/page_header', ['title' => 'Editable Artifacts!']) ?>
+
+<?= $this->element('SiteManager.Bootstrap/section', [
+	'title' => 'Empty "Placehoder" Artifacts:',
+	'body' => 'To add a placehoder artifact, just insert the following code into the location'
+]); ?>
+
+<div class="row">
+	<div class="col-xs-12 col-sm-8">
+		<pre>$this->element('SiteManager.artifact', ['name' => 'myNewArtifactName', 'class' => 'someClass']);</pre>
+	</div>
+	<div class="col-xs-12 col-sm-4">
+		<?= $this->element('SiteManager.artifact', ['name' => 'myNewArtifact', 'class' => 'lead']); ?>
+	</div>
+</div>
+
+<p class="lead">This will give you an editable placeholder like the following. When in edit/debug mode, you can hover the artifact to get an edit button. Fill in some content for your new artifact and the artifact will be populated (See example above).</p>
+
+<?= $this->element('SiteManager.Bootstrap/section', [
+	'title' => 'Text Artifacts:',
+	'body' => 'Artifacts of this type will fill in <code>&lt;p&gt;</code> elements with some automatic formatting. See the examples below.'
+]); ?>
+<div class="row">
+	<div class="col-xs-12 col-sm-6">
+		<?= $this->element('SiteManager.artifact', ['name' => 'help', 'class' => 'lead']); ?>
+	</div>
+	<div class="col-xs-12 col-sm-6">
+		<?= $this->element('SiteManager.artifact', ['name' => 'help2', 'class' => 'lead']); ?>
+	</div>
+</div>
 
 <?= $this->element('SiteManager.Bootstrap/page_header', ['title' => 'Forms']) ?>
 <p>Below you will see examples of the different types of form elements supported by this template. These can be customized in <code>config/app_form.php</code>.</p>

@@ -7,7 +7,7 @@
 	{
 	    public function edit($id = null) {
 	    	$this->viewBuilder()->layout('ajax');
-			if(!is_int($id)) {
+			if(!is_numeric($id)) {
 				$artifact = $this->Artifacts->newEntity();
 		        if ($this->request->is(['post', 'put'])) {
 		            $artifact = $this->Artifacts->patchEntity($artifact, $this->request->data);
@@ -29,6 +29,7 @@
 			        $this->Flash->error(__('Unable to update your artifact.'));
 			    }
 			}
+			$this->set('options', ['text' => 'Text', 'heading' => 'Heading', 'image' => 'Image']);
 			$this->set('artifact', $artifact);
 	    }
 	}

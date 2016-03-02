@@ -7,6 +7,7 @@
 	if(!isset($element)) $element = 'no';
 	if(!isset($options)) $options = null;
 ?>
+<span class="anchor" id="<?= $element ?>"></span>
 <h3>Element Help - <strong><?= Inflector::humanize($element) ?></strong></h3>
 <p class="lead">Usage</p>
 <pre>echo $this->element('SiteManager.Bootstrap/<?= $element ?>', ['option' => 'value', 'option2' => 'value2']);</pre>

@@ -18,4 +18,6 @@ function updateModal(path)
    });
 
 }
+
+<?php if(!empty($GLOBALS['page_script'])) echo $GLOBALS['page_script']; ?>
 </script>

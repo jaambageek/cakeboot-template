@@ -19,7 +19,7 @@ use Cake\View\HelperRegistry;
 				'brand' => ['[\'name\' => \'Brand\']','The brand name and logo (<code>[\'name\' => \'Your Brand\', \'logo\' => \'logo.png\']</code>).'],
 				'navs'  => ['[\'nav\' => [\'links\' => [], \'right\' => true, \'show\' => \'all\']]','An array of navs for the navbar. Set <code>right</code> to true to pull a nav to the right.'],
 				'links' => ['[\'Link\' => \'/\', \'Link 2\' => \'/\']','The array of links for a nav (used in <code>navs</code> above).'],
-				'show'  => ['"all"' => 'Whether or not the nav is displayed (<code>"all"</code> = Everyone, <code>"user"</code> = Logged in users, <code>"admin"</code> = Administrators).']
+				'show'  => ['"all"', 'Whether or not the nav is displayed (<code>"all"</code> = Everyone, <code>"user"</code> = Logged in users, <code>"admin"</code> = Administrators).']
 			]
 		]);
 	}

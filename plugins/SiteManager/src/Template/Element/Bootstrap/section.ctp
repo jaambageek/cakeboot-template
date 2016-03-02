@@ -8,7 +8,8 @@
 			'element' => 'section',
 			'options' => [
 				'title' => ['"My Section"','The title of the section.'],
-				'body'  => ['"Empty."','The body text displayed in the section.']
+				'body'  => ['"Empty."','The body text displayed in the section.'],
+				'id'    => ['false', 'An ID for anchor navigation references']
 			]
 		]);
 	}
@@ -17,9 +18,11 @@
 	
 	if(!isset($title)) $title = 'My Section';
 	if(!isset($body))  $body  = 'Empty.';
+	if(!isset($id))    $id    = false;
 ?>
 
-<h3><?= $title?></h3>
+<?php if($id) echo '<span class="anchor" id="'.$id.'"></span>';?>
+<h2><?= $title?></h2>
 <p class="lead"><?= $body ?></p>
 
 <?php if(!empty($help)) echo '</div>'; ?>

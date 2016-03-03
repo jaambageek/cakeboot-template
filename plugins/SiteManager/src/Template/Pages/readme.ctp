@@ -114,10 +114,10 @@
 		]); ?>
 		<div class="row">
 			<div class="col-xs-12 col-sm-6">
-				<?= $this->element('SiteManager.artifact', ['name' => 'help', 'class' => 'lead']); ?>
+				<?= $this->element('SiteManager.artifact', ['name' => 'readme-text', 'class' => 'lead']); ?>
 			</div>
 			<div class="col-xs-12 col-sm-6">
-				<?= $this->element('SiteManager.artifact', ['name' => 'help2', 'class' => 'lead']); ?>
+				<?= $this->element('SiteManager.artifact', ['name' => 'readme-text2', 'class' => 'lead']); ?>
 			</div>
 		</div>
 		<p class="lead">You may optionally include a <code>'class'</code> attribute with your artifact. The default class for <code>&lt;p&gt;</code> is <code>'lead'</code>.</p>

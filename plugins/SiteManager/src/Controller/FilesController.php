@@ -11,43 +11,57 @@
 	    public function index()
 	    {
 	    	$files = [];
-
-		$d = 0;
-		$dir = new Folder(dirname('../src'));
-		$files_dev = $dir->find('.*');
-		sort($files_dev);
-		foreach ($files_dev as $file) {
-			$file = new File($dir->pwd() . DS . $file);
-			$files[$file->name]['dev_date'] = Time::createFromTimestamp(round($file->lastChange()/60)*60);
-			$d++;
-		}
-		$ud = $d; // Unique Files Dev. Will Subtract 1 for each file match.
-		$nd = 0; // Newer Files Dev.
-
-		$p = 0;
-		$up = 0;
-		$np = 0;
-		$dir = new Folder(dirname('../../production/src'));
-		$files_prod = $dir->find('.*');
-		sort($files_prod);
-		foreach ($files_prod as $file) {
-			$file = new File($dir->pwd() . DS . $file);
-			$name = $file->name;
-			$date = Time::createFromTimestamp(round($file->lastChange()/60)*60);
-			$files[$file->name]['prod_date'] = $date;
-
-			if(!empty($files[$name]['dev_date'])) {
-				$ud--;
-				if($date < $files[$name]['dev_date']) $nd++;
-				elseif($date > $files[$name]['dev_date']) $np++;
-				else unset($files[$name]);
-			} else {
-				$up++;
+			
+	    	$dev_folders_to_check = ['../src', '../plugins', '../webroot'];
+			$prod_folders_to_check = ['../../production/src', '../../production/plugins', '../../production/webroot'];
+			$d = 0;
+			
+			foreach($dev_folders_to_check as $folder) {
+				$dir = new Folder($folder);
+				$tree = $dir->tree(null, ['.htaccess','error_log'])[1];
+				
+				sort($tree);
+				foreach ($tree as $entry) {
+					$file = new File($entry);
+					preg_match('/.*development(.*)/', $entry, $filename);
+					$filename = $filename[1];
+					$files[$filename]['dev_date'] = Time::createFromTimestamp(round($file->lastChange()/60)*60);
+					$d++;
+				}
 			}
-			$p++;
-		}
-
-		$stats = [
+			
+			$ud = $d; // Unique Files Dev. Will Subtract 1 for each file match.
+			$nd = 0; // Newer Files Dev.
+		
+			$p = 0;
+			$up = 0;
+			$np = 0;
+			
+			foreach($prod_folders_to_check as $folder) {
+				$dir = new Folder($folder);
+				$tree = $dir->tree(null, ['.htaccess','error_log'])[1];
+				
+				sort($tree);
+				foreach ($tree as $entry) {
+					$file = new File($entry);
+					preg_match('/.*production(.*)/', $entry, $filename);
+					$filename = $filename[1];
+					$date = Time::createFromTimestamp(round($file->lastChange()/60)*60);
+					$files[$filename]['prod_date'] = $date;
+		
+					if(!empty($files[$filename]['dev_date'])) {
+						$ud--;
+						if($date < $files[$filename]['dev_date']) $nd++;
+						elseif($date > $files[$filename]['dev_date']) $np++;
+						else unset($files[$filename]);
+					} else {
+						$up++;
+					}
+					$p++;
+				}
+			}
+		
+			$stats = [
 	    		'files_dev'   => $d,
 	    		'files_prod'  => $p,
 	    		'unique_dev'  => $ud,
@@ -56,8 +70,63 @@
 	    		'newer_prod'  => $np
 	    	];
 
-		$this->set('files', $files);
-		$this->set('stats', $stats);
+			$this->set('files', $files);
+			$this->set('stats', $stats);
 	    }
+
+		// DELETE FILE FROM PRODUCTION
+		public function delete($path) {
+			$path = urldecode($path);
+			$file = new File('../../production'. $path);
+			if($file->delete()) {
+				$this->Flash->success(__('File removed successfully.'));
+			} else {
+				$this->Flash->error(__('Unable remove file.'));
+			}
+			return $this->redirect($this->referer());
+		}
+		
+		// UPLOAD FILE TO PRODUCTION
+		public function upload($path) {
+			$path = str_replace('___', '/', $path);
+			$file = new File('../../development'. $path);
+			$file2 = new File('../../production'. $path);
+			if(!$file2->exists()) {
+				$dirs = explode('/', $path);
+				$prod = new Folder('../../production');
+				for($i = 0; $i < sizeof($dirs)-1; $i++) {
+					if(!$prod->cd($dirs[$i])) {
+						$prod->create($dirs[$i]);
+						$prod->cd($dirs[$i]);
+					}
+				}
+			}
+			if($file->copy('../../production'. $path)) {
+				if(touch('../../production'. $path, $file->lastChange())) {
+					$this->Flash->success(__('File copied successfully.'));
+				} else {
+					$this->Flash->success(__('File copied successfully, but time not updated.'));
+				}
+			} else {
+				$this->Flash->error(__('Unable copy file. '));
+			}
+			return $this->redirect($this->referer());
+		}
+		
+		// DOWNLOAD FILE TO DEV
+		public function download($path) {
+			$path = str_replace('___', '/', $path);
+			$file = new File('../../production'. $path);
+			if($file->copy('../../development'. $path)) {
+				if(touch('../../development'. $path, $file->lastChange())) {
+					$this->Flash->success(__('File copied successfully.'));
+				} else {
+					$this->Flash->success(__('File copied successfully, but time not updated.'));
+				}
+			} else {
+				$this->Flash->error(__('Unable copy file.'));
+			}
+			return $this->redirect($this->referer());
+		}
 	}
 ?>

@@ -36,7 +36,6 @@
 					<a class="top" href="#editable">Editable Artifacts</a>
 					<ul class="nav">
 						<li class="sub"><a href="#placeholders">Empty Artifacts</a></li>
-						<li class="sub"><a href="#headings">Heading Artifacts</a></li>
 						<li class="sub"><a href="#texts">Text Artifacts</a></li>
 						<li class="sub"><a href="#images">Image Artifacts</a></li>
 					</ul>
@@ -87,40 +86,24 @@
 			</div>
 			<div class="col-xs-12 col-sm-6">
 				<pre>$this->element('SiteManager.artifact', ['name' => 'myNewArtifactName']);</pre>
-				<?= $this->element('SiteManager.artifact', ['name' => 'myNewArtifact', 'class' => 'lead']); ?>
+				<p class="lead"><?= $this->element('SiteManager.artifact_text', ['name' => 'myNewArtifact']); ?></p>
 			</div>
 		</div>
 		<br /><br />
 		
 		<?= $this->element('SiteManager.Bootstrap/section', [
-			'id' => 'headings',
-			'title' => 'Heading Artifacts:',
-			'body' => ''
-		]); ?>
-		<div class="row">
-			<div class="col-xs-12 col-sm-6">
-				<p class="lead">Headings are the simplest artifacts. Place your artifact with a heading <code>'tag'</code> attribute and the content will be displayed as a heading. If no heading tag is provided the default will be <code>h1</code>.</p>
-			</div>
-			<div class="col-xs-12 col-sm-6">
-				<pre>$this->element('SiteManager.artifact', ['name' => 'myHeadingName', 'tag' => 'h1']);</pre>
-				<?= $this->element('SiteManager.artifact', ['name' => 'heading-readme', 'tag' => 'h1']); ?>
-			</div>
-		</div>
-		<br /><br />
-		<?= $this->element('SiteManager.Bootstrap/section', [
 			'id' => 'texts',
 			'title' => 'Text Artifacts:',
-			'body' => 'Artifacts of this type will fill in <code>&lt;p&gt;</code> elements with some automatic formatting. See the examples below.'
+			'body' => 'Artifacts of this type will return the text entered in them. Use any style you want to display the text. See examples below:'
 		]); ?>
 		<div class="row">
 			<div class="col-xs-12 col-sm-6">
-				<?= $this->element('SiteManager.artifact', ['name' => 'readme-text', 'class' => 'lead']); ?>
+				<h1><?= $this->element('SiteManager.artifact_text', ['name' => 'readme-heading']); ?></h1>
 			</div>
 			<div class="col-xs-12 col-sm-6">
-				<?= $this->element('SiteManager.artifact', ['name' => 'readme-text2', 'class' => 'lead']); ?>
+				<p class="lead"><?= $this->element('SiteManager.artifact_text', ['name' => 'readme-text2']); ?></p>
 			</div>
 		</div>
-		<p class="lead">You may optionally include a <code>'class'</code> attribute with your artifact. The default class for <code>&lt;p&gt;</code> is <code>'lead'</code>.</p>
 		<br /><br />
 		
 		<?= $this->element('SiteManager.Bootstrap/section', [
@@ -133,7 +116,7 @@
 				
 			</div>
 			<div class="col-xs-12 col-sm-6">
-				<?= $this->element('SiteManager.artifact', ['name' => 'image-readme']); ?>
+				<?= $this->element('SiteManager.artifact_image', ['name' => 'image-readme']); ?>
 			</div>
 		</div>
 		

@@ -42,7 +42,7 @@ li.sub.active a {
 
 /* ARTIFACTS */
 .artifact-public {
-	
+	display:block;
 }
 
 .edit-button {
@@ -61,6 +61,7 @@ li.sub.active a {
 }
 
 .artifact-edit {
+	display:block;
 	position:relative;
 }
 

@@ -75,9 +75,9 @@
 	    }
 
 		// DELETE FILE FROM PRODUCTION
-		public function delete($path) {
-			$path = urldecode($path);
-			$file = new File('../../production'. $path);
+		public function delete($system, $path) {
+			$path = str_replace('___', '/', $path);
+			$file = new File('../../'. $system . $path);
 			if($file->delete()) {
 				$this->Flash->success(__('File removed successfully.'));
 			} else {
@@ -86,14 +86,18 @@
 			return $this->redirect($this->referer());
 		}
 		
-		// UPLOAD FILE TO PRODUCTION
-		public function upload($path) {
+		// UPLOAD FILE TO SYSTEM SPECIFIED
+		public function upload($system, $path) {
+			// UPLOAD THE FILE TO THE RIGHT SYSTEM
+			if($system == 'production') $other = 'development';
+			else $other = 'production';
+			
 			$path = str_replace('___', '/', $path);
-			$file = new File('../../development'. $path);
-			$file2 = new File('../../production'. $path);
+			$file = new File('../../'. $other . $path);
+			$file2 = new File('../../'. $system. $path);
 			if(!$file2->exists()) {
 				$dirs = explode('/', $path);
-				$prod = new Folder('../../production');
+				$prod = new Folder('../../'. $system);
 				for($i = 0; $i < sizeof($dirs)-1; $i++) {
 					if(!$prod->cd($dirs[$i])) {
 						$prod->create($dirs[$i]);
@@ -101,30 +105,14 @@
 					}
 				}
 			}
-			if($file->copy('../../production'. $path)) {
-				if(touch('../../production'. $path, $file->lastChange())) {
+			if($file->copy('../../'. $system . $path)) {
+				if(touch('../../'. $system . $path, $file->lastChange())) {
 					$this->Flash->success(__('File copied successfully.'));
 				} else {
 					$this->Flash->success(__('File copied successfully, but time not updated.'));
 				}
 			} else {
 				$this->Flash->error(__('Unable copy file. '));
-			}
-			return $this->redirect($this->referer());
-		}
-		
-		// DOWNLOAD FILE TO DEV
-		public function download($path) {
-			$path = str_replace('___', '/', $path);
-			$file = new File('../../production'. $path);
-			if($file->copy('../../development'. $path)) {
-				if(touch('../../development'. $path, $file->lastChange())) {
-					$this->Flash->success(__('File copied successfully.'));
-				} else {
-					$this->Flash->success(__('File copied successfully, but time not updated.'));
-				}
-			} else {
-				$this->Flash->error(__('Unable copy file.'));
 			}
 			return $this->redirect($this->referer());
 		}

@@ -12,6 +12,9 @@
 				</tr>
 			</thead>
 			<tbody>
+				<?php if(empty($files)): ?>
+					<tr class='success'><th class="text-center" colspan='4'><h3>All your files are in sync.</h3></th></tr>
+				<?php endif; ?>
 				<?php foreach($files as $name => $file): ?>
 					<?php
 						if(!empty($file['dev_date'])) $dev_date = $file['dev_date'];
@@ -31,8 +34,10 @@
 									'b1' => [
 										'class' => 'danger', 
 										'title' => $this->element('SiteManager.Bootstrap/icon', ['icon' => 'remove']),
-										'url'   => '/sitemgr/files/delete/'. urlencode($name),
-										'type'  => 'link'
+										'tooltip' => 'Delete from Production',
+										'url'   => '/sitemgr/files/delete/production/'. str_replace('/', '___', $name),
+										'type'  => 'link',
+										'confirm' => 'Are you sure you want to delete this file?'
 									]
 								]
 							]);
@@ -47,14 +52,14 @@
 										'class' => 'primary', 
 										'title' => $this->element('SiteManager.Bootstrap/icon', ['icon' => 'download']),
 										'tooltip' => 'Download from Production',
-										'url'   => '/sitemgr/files/download/'. str_replace('/', '___', $name),
+										'url'   => '/sitemgr/files/upload/development/'. str_replace('/', '___', $name),
 										'type'  => 'link'
 									],
 									'b2' => [
 										'class' => 'default', 
 										'title' => $this->element('SiteManager.Bootstrap/icon', ['icon' => 'upload']),
 										'tooltip' => 'Upload to Production',
-										'url'   => '/sitemgr/files/upload/'. str_replace('/', '___', $name),
+										'url'   => '/sitemgr/files/upload/production/'. str_replace('/', '___', $name),
 										'type'  => 'link'
 									]
 								]
@@ -62,25 +67,38 @@
 						} else {
 							// THE FILE IS NEWER IN DEV AND SHOULD BE MOVED TO PRODUCTION WHEN READY.
 							$class = 'info';
+							
+							if(empty($prod_date)) {
+								$buttons['b1'] = [
+									'class'   => 'danger', 
+									'title'   => $this->element('SiteManager.Bootstrap/icon', ['icon' => 'remove']),
+									'tooltip' => 'Delete from Dev',
+									'url'     => '/sitemgr/files/delete/development/'. str_replace('/', '___', $name),
+									'type'    => 'link',
+									'confirm' => 'Are you sure you want to delete this file?'
+								];
+							} else {
+								$buttons['b1'] = [
+									'class'   => 'default', 
+									'title'   => $this->element('SiteManager.Bootstrap/icon', ['icon' => 'download']),
+									'tooltip' => 'Download from Production', 
+									'url'     => '/sitemgr/files/upload/development/'. str_replace('/', '___', $name),
+									'type'    => 'link'
+								];
+							}
+
+							$buttons['b2'] = [
+								'class'   => 'primary', 
+								'title'   => $this->element('SiteManager.Bootstrap/icon', ['icon' => 'upload']),
+								'tooltip' => 'Upload to Production',
+								'url'     => '/sitemgr/files/upload/production/'. str_replace('/', '___', $name),
+								'type'    => 'link'
+							];
+							
 							$actions = $this->element('SiteManager.Bootstrap/button_group', [
 								'size'    => 'xs', 
 								'label'   => 'actions', 
-								'buttons' => [
-									'b1' => [
-										'class'   => 'default', 
-										'title'   => $this->element('SiteManager.Bootstrap/icon', ['icon' => 'download']),
-										'tooltip' => 'Download from Production', 
-										'url'     => '/sitemgr/files/download/'. str_replace('/', '___', $name),
-										'type'    => 'link'
-									],
-									'b2' => [
-										'class'   => 'primary', 
-										'title'   => $this->element('SiteManager.Bootstrap/icon', ['icon' => 'upload']),
-										'tooltip' => 'Upload to Production',
-										'url'     => '/sitemgr/files/upload/'. str_replace('/', '___', $name),
-										'type'    => 'link'
-									]
-								]
+								'buttons' => $buttons
 							]);
 						}
 					?>

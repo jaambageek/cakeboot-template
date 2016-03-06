@@ -24,76 +24,66 @@
 						else $prod_date = null;
 						
 						$actions = '';
+						/* TODO: UPDATE THE BUTTON GROUP SO ITS THE SAME FOR ALL */
+						$buttons = [
+							'b1' => [
+								'class' => 'danger', 
+								'title' => $this->element('SiteManager.Bootstrap/icon', ['icon' => 'remove']),
+								'confirm' => 'Are you sure you want to delete this file',
+								'type'  => 'link'
+							],
+							'b2' => [
+								'class' => 'default', 
+								'title' => $this->element('SiteManager.Bootstrap/icon', ['icon' => 'download']),
+								'tooltip' => 'Download from Production',
+								'url'   => '/sitemgr/files/upload/development/'. str_replace('/', '___', $name),
+								'type'  => 'link'
+							],
+							'b3' => [
+								'class' => 'primary', 
+								'title' => $this->element('SiteManager.Bootstrap/icon', ['icon' => 'upload']),
+								'tooltip' => 'Upload to Production',
+								'url'   => '/sitemgr/files/upload/production/'. str_replace('/', '___', $name),
+								'type'  => 'link'
+							]
+						];
+							
 						if(empty($dev_date)) {
 							// THE FILE DOESN''T EXIST ON DEV AND MOST LIKELY SHOULD BE DELETED FROM PRODUCTION.
 							$class = 'danger';
+							
+							$buttons['b1']['tooltip'] = 'Delete From Production';
+							$buttons['b1']['url']     = '/sitemgr/files/delete/production/'. str_replace('/', '___', $name);
+							$buttons['b3']['url'] = '';
+							$buttons['b3']['attrs'] = ['disabled' => 'disabled'];
+							
 							$actions = $this->element('SiteManager.Bootstrap/button_group', [
 								'size'    => 'xs', 
 								'label'   => 'actions', 
-								'buttons' => [
-									'b1' => [
-										'class' => 'danger', 
-										'title' => $this->element('SiteManager.Bootstrap/icon', ['icon' => 'remove']),
-										'tooltip' => 'Delete from Production',
-										'url'   => '/sitemgr/files/delete/production/'. str_replace('/', '___', $name),
-										'type'  => 'link',
-										'confirm' => 'Are you sure you want to delete this file?'
-									]
-								]
+								'buttons' => $buttons
 							]);
 						} elseif(!empty($prod_date) && $prod_date > $dev_date) {
 							// THE FILE IS NEWER IN PRODUCTION, PROBABLY MEANS SOMEONE MODIFIED IT IN THE WRONG PLACE.
 							$class = 'danger';
+							
+							$buttons['b1']['tooltip'] = 'Delete From Production';
+							$buttons['b1']['url']     = '/sitemgr/files/delete/production/'. str_replace('/', '___', $name);
+							
 							$actions = $this->element('SiteManager.Bootstrap/button_group', [
 								'size'    => 'xs', 
 								'label'   => 'actions', 
-								'buttons' => [
-									'b1' => [
-										'class' => 'primary', 
-										'title' => $this->element('SiteManager.Bootstrap/icon', ['icon' => 'download']),
-										'tooltip' => 'Download from Production',
-										'url'   => '/sitemgr/files/upload/development/'. str_replace('/', '___', $name),
-										'type'  => 'link'
-									],
-									'b2' => [
-										'class' => 'default', 
-										'title' => $this->element('SiteManager.Bootstrap/icon', ['icon' => 'upload']),
-										'tooltip' => 'Upload to Production',
-										'url'   => '/sitemgr/files/upload/production/'. str_replace('/', '___', $name),
-										'type'  => 'link'
-									]
-								]
+								'buttons' => $buttons
 							]);
 						} else {
 							// THE FILE IS NEWER IN DEV AND SHOULD BE MOVED TO PRODUCTION WHEN READY.
 							$class = 'info';
-							
-							if(empty($prod_date)) {
-								$buttons['b1'] = [
-									'class'   => 'danger', 
-									'title'   => $this->element('SiteManager.Bootstrap/icon', ['icon' => 'remove']),
-									'tooltip' => 'Delete from Dev',
-									'url'     => '/sitemgr/files/delete/development/'. str_replace('/', '___', $name),
-									'type'    => 'link',
-									'confirm' => 'Are you sure you want to delete this file?'
-								];
-							} else {
-								$buttons['b1'] = [
-									'class'   => 'default', 
-									'title'   => $this->element('SiteManager.Bootstrap/icon', ['icon' => 'download']),
-									'tooltip' => 'Download from Production', 
-									'url'     => '/sitemgr/files/upload/development/'. str_replace('/', '___', $name),
-									'type'    => 'link'
-								];
-							}
 
-							$buttons['b2'] = [
-								'class'   => 'primary', 
-								'title'   => $this->element('SiteManager.Bootstrap/icon', ['icon' => 'upload']),
-								'tooltip' => 'Upload to Production',
-								'url'     => '/sitemgr/files/upload/production/'. str_replace('/', '___', $name),
-								'type'    => 'link'
-							];
+							if(empty($prod_date)) {
+								$buttons['b1']['tooltip'] = 'Delete From Dev';
+								$buttons['b1']['url']     = '/sitemgr/files/delete/development/'. str_replace('/', '___', $name);
+								$buttons['b2']['url'] = '';
+								$buttons['b2']['attrs'] = ['disabled' => 'disabled'];
+							}
 							
 							$actions = $this->element('SiteManager.Bootstrap/button_group', [
 								'size'    => 'xs', 

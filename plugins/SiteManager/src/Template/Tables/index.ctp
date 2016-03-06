@@ -1,6 +1,4 @@
 <?= $this->element('Bootstrap/page_header', ['title' => 'Initialize Tables']); ?>
-<?php debug($user_status); ?>
-<?php debug($sitemgr); ?>
 <p class="lead">
   <strong>User Plugin Tables: </strong>
   <?php

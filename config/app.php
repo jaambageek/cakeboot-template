@@ -5,6 +5,8 @@
 	 * Test site path must contain 'test', set database name for test
 	 * Any other path will go to Prod database, set name for prod
 	 */
+	 
+	$my_domain = '.your_domain.com';
 	$db_user     = 'your_db_user';
 	$db_password = 'your_password';
 	if(strpos($_SERVER['SERVER_NAME'], 'dev') !== false) {
@@ -341,5 +343,9 @@ return [
      */
     'Session' => [
         'defaults' => 'php',
+        'ini' => [
+		    'session.cookie_path' => '/',
+		    'session.cookie_domain' => $my_domain
+	    ]
     ],
 ];

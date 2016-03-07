@@ -58,5 +58,12 @@ return [
             'action' => ['profile','logout'],
             'allowed' => true,
         ],
+        [
+            'role' => 'owner',
+            'plugin' => 'SiteManager',
+            'controller' => 'Artifacts',
+            'action' => ['editText','editImage'],
+            'allowed' => true,
+        ],
 	]
 ];

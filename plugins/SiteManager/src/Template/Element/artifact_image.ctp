@@ -12,7 +12,12 @@
 ?>
 
 <?php 
-	if(Configure::read('debug')) $this_mode = 'edit';
+	$this->loadHelper('User');
+	
+	$role  = $this->User->role();
+	$admin = $this->User->admin();
+
+	if(($role == 'owner') || ($admin)) $this_mode = 'edit';
 	else $this_mode = 'public';
 ?>
 
@@ -24,6 +29,7 @@
 		<?= $this->SiteManager->autoParagraph($this->Text->autoLink($artifact->content)); ?>
 	<?php endif; ?>
 
+	<?php if(($role == 'owner') || ($admin)): ?>
 	<span class="edit-box">
 		<?= 
 			$this->element('SiteManager.Bootstrap/button', [
@@ -34,4 +40,5 @@
 			]); 
 		?>
 	</span>
+	<?php endif; ?>
 </span>

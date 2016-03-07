@@ -21,7 +21,22 @@
 			$update = true;
 		}
 	}
-	if($update) echo $this->Html->link('Initialize', '/sitemgr/tables/setup/sitemgr');
+	if($update) echo $this->Html->link('Update', '/sitemgr/tables/setup/sitemgr');
 	else echo $this->Html->link('Remove Tables', '/sitemgr/tables/remove/sitemgr');
+  ?>
+</p>
+<p class="lead">
+  <strong>Local Site Tables: </strong>
+  <?php
+  	if(!empty($local)) {
+	  	$update = false;
+	  	foreach($local as $migration) {
+			if(($migration['name']) && ($migration['status'] == 'down')) {
+				$update = true;
+			}
+		}
+		if($update) echo $this->Html->link('Update', '/sitemgr/tables/setup/local');
+		else echo $this->Html->link('Remove Tables', '/sitemgr/tables/remove/local');
+	}
   ?>
 </p>

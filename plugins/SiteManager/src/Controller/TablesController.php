@@ -6,7 +6,6 @@
 
 	class TablesController extends AppController
 	{
-		// TODO - If User management isn't turned on yet, any user needs to be able to do this.
 	    public function index()
 	    {
         $user_migrations = new Migrations(['source' => '../plugins/CakeDC/Users/config/Migrations']);
@@ -22,6 +21,13 @@
         if(!empty($status)) {
           $this->set('sitemgr', $status);
         }
+		
+		$local = new Migrations(['source' => '../config/Migrations']);
+        $status = $local->status();
+
+        if(!empty($status)) {
+          $this->set('local', $status);
+        }
       }
 
       public function setup($table = null) {
@@ -29,6 +35,8 @@
           $source = '../plugins/CakeDC/Users/config/Migrations';
         } else if($table == 'sitemgr') {
           $source = '../plugins/SiteManager/config/Migrations';
+        } else if($table == 'local') {
+          $source = '../config/Migrations';
         }
 		
         $migrations = new Migrations(['source' => $source]);
@@ -45,6 +53,8 @@
           $source = '../plugins/CakeDC/Users/config/Migrations';
         } else if($table == 'sitemgr') {
           $source = '../plugins/SiteManager/config/Migrations';
+        } else if($table == 'local') {
+          $source = '../config/Migrations';
         }
 		
         $migrations = new Migrations(['source' => $source]);

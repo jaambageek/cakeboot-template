@@ -12,8 +12,20 @@
 	    {
 	    	$files = [];
 			
-	    	$dev_folders_to_check = ['../src', '../plugins', '../webroot'];
-			$prod_folders_to_check = ['../../production/src', '../../production/plugins', '../../production/webroot'];
+	    	$dev_folders_to_check = [
+	    		'../src',
+	    		'../plugins',
+	    		'../webroot',
+	    		'../config'
+	    	];
+			
+			$prod_folders_to_check = [
+				'../../production/src',
+				'../../production/plugins',
+				'../../production/webroot',
+				'../../production/config'
+			];
+			
 			$d = 0;
 			
 			foreach($dev_folders_to_check as $folder) {
@@ -49,7 +61,7 @@
 					$date = Time::createFromTimestamp(round($file->lastChange()/60)*60);
 					$files[$filename]['prod_date'] = $date;
 		
-					if(!empty($files[$filename]['dev_date'])) {
+					if(isset($files[$filename]['dev_date'])) {
 						$ud--;
 						if($date < $files[$filename]['dev_date']) $nd++;
 						elseif($date > $files[$filename]['dev_date']) $np++;

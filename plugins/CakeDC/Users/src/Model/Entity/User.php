@@ -35,6 +35,7 @@ class User extends Entity
         'confirm_password' => true,
         'first_name' => true,
         'last_name' => true,
+        'role' => true,
         'avatar' => true,
         'token' => true,
         'token_expires' => true,

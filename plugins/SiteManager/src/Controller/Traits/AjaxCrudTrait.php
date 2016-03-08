@@ -126,7 +126,6 @@ trait AjaxCrudTrait
      */
     public function delete($id = null)
     {
-        $this->request->allowMethod(['post', 'delete']);
         $table = $this->loadModel();
         $tableAlias = $table->alias();
         $entity = $table->get($id, [

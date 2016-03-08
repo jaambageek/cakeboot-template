@@ -34,7 +34,15 @@
 		<?= 
 			$this->element('SiteManager.Bootstrap/button', [
 				'title' => $this->element('SiteManager.Bootstrap/icon', ['icon' => 'pencil']), 
-				'class' => 'primary btn-sm edit-button', 
+				'class' => 'primary btn-sm edit-button hidden-xs', 
+				'type' => 'button',
+				'url' => 'updateModal(\'/sitemgr/artifacts/edit_text/'. $id .'\')'
+			]); 
+		?>
+		<?= 
+			$this->element('SiteManager.Bootstrap/button', [
+				'title' => $this->element('SiteManager.Bootstrap/icon', ['icon' => 'pencil']), 
+				'class' => 'primary btn-sm visible-xs visible-sm pull-right', 
 				'type' => 'button',
 				'url' => 'updateModal(\'/sitemgr/artifacts/edit_text/'. $id .'\')'
 			]); 

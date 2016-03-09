@@ -131,6 +131,18 @@
 						<td class="text-right">Newer files Prod</td>
 						<th><?= $stats['newer_prod']; ?></th>
 					</tr>
+					<tr>
+						<td colspan="2">You can use this to upload development files to the client production site at once. This will not remove unique files on the production site. It will overwrite all existing files on the production system, even if the date is newer.<br />
+						<?= 
+							$button = $this->element('SiteManager.Bootstrap/button', [
+								'class' => 'default pull-right', 
+								'title' => $this->element('SiteManager.Bootstrap/icon', ['icon' => 'upload']) .' Upload All', 
+								'type'  => 'link', 
+								'url'   => '/sitemgr/files/sync',
+								'confirm' => 'Upload all files to Production?'
+							]); 
+						?></td>
+					</tr>
 				</tbody>
 			</table>
 		</div>

@@ -109,5 +109,4 @@ use Cake\View\HelperRegistry;
 		<?php endif; ?>
 	</div><!-- /.container -->
 </nav>
-
 <?php if(!empty($help)) echo '</div>'; ?>

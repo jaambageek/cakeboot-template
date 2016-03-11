@@ -16,7 +16,7 @@ use Cake\View\HelperRegistry;
 			'options' => [
 				'class' => ['"default"','Navbar style (<code>"default"</code>, <code>"inverted"</code>).'],
 				'fixed' => ['false','Whether or not the navbar is fixed to the top/bottom of the page (<code>"top"</code>, <code>"bottom"</code>).'],
-				'fluid' => ['true', 'Whether or not the inner container is <code>container-fluid</code> or just <code>container</code>'],
+				'fluid' => ['true', 'Whether the navbar should use <code>container-fluid</code> or <code>container</code>'],
 				'brand' => ['[\'name\' => \'Brand\']','The brand name and logo (<code>[\'name\' => \'Your Brand\', \'logo\' => \'logo.png\']</code>).'],
 				'navs'  => ['[\'nav\' => [\'links\' => [], \'right\' => true, \'show\' => \'all\']]','An array of navs for the navbar. Set <code>right</code> to true to pull a nav to the right.'],
 				'links' => ['[\'Link\' => \'/\', \'Link 2\' => \'/\']','The array of links for a nav (used in <code>navs</code> above).'],
@@ -68,7 +68,15 @@ use Cake\View\HelperRegistry;
 						<?php if(empty($nav['dropdown'])): ?>
 							<ul class="nav navbar-nav<?php if(isset($nav['right'])) echo ' navbar-right' ?>">
 								<?php foreach($nav['links'] as $name => $link): ?>
-									<li><a href="<?= $link ?>"><?= $name ?></a></li>
+									<?php
+										// CHECK ACTIVE LINK LOGIC
+										$active = '';
+										// HOME BUTTON
+										if(($link == '/') && ($this->request->here == '/')) $active = ' class="active"';
+										// OTHER
+										if(($link != '/') && (strpos($this->request->here, $link) !== false)) $active = ' class="active"';
+									?>
+									<li<?= $active ?>><a href="<?= $link ?>"><?= $name ?></a></li>
 								<?php endforeach; ?>
 							</ul>
 						<?php else: ?>
@@ -82,7 +90,13 @@ use Cake\View\HelperRegistry;
 											<?php elseif($link == 'header'): ?>
 												<li class="dropdown-header"><?= $name ?></li>
 											<?php else: ?>
-												<li><a href="<?= $link ?>"><?= $name ?></a></li>
+												<?php
+													// CHECK ACTIVE LINK LOGIC
+													$active = '';
+													// DROPDOWNS
+													if(strpos($this->request->here, $link) !== false) $active = ' class="active"';
+												?>
+												<li<?= $active ?>><a href="<?= $link ?>"><?= $name ?></a></li>
 											<?php endif;?>
 										<?php endforeach; ?>
 									</ul>

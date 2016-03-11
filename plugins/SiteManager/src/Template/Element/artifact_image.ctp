@@ -30,23 +30,6 @@
 	<?php endif; ?>
 
 	<?php if(($role == 'owner') || ($admin)): ?>
-	<span class="edit-box">
-		<?= 
-			$this->element('SiteManager.Bootstrap/button', [
-				'title' => $this->element('SiteManager.Bootstrap/icon', ['icon' => 'pencil']), 
-				'class' => 'primary btn-sm edit-button hidden-xs', 
-				'type' => 'button',
-				'url' => 'updateModal(\'/sitemgr/artifacts/edit_image/'. $id .'\')'
-			]); 
-		?>
-		<?= 
-			$this->element('SiteManager.Bootstrap/button', [
-				'title' => $this->element('SiteManager.Bootstrap/icon', ['icon' => 'pencil']), 
-				'class' => 'primary btn-sm visible-xs visible-sm pull-right', 
-				'type' => 'button',
-				'url' => 'updateModal(\'/sitemgr/artifacts/edit_image/'. $id .'\')'
-			]); 
-		?>
-	</span>
+		<span class="edit-box" onclick="updateModal('/sitemgr/artifacts/edit_image/<?= $id ?>')"></span>
 	<?php endif; ?>
 </span>

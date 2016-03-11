@@ -12,7 +12,9 @@
 				</tr>
 			</thead>
 			<tbody>
-				<?php if(empty($files)): ?>
+				<?php if((empty($files)) && (empty($stats))): ?>
+					<tr class='warning'><th class="text-center" colspan='4'><h3>You must be in the dev system to deliver changes.</h3></th></tr>
+				<?php elseif(empty($files)): ?>
 					<tr class='success'><th class="text-center" colspan='4'><h3>All your files are in sync.</h3></th></tr>
 				<?php endif; ?>
 				<?php foreach($files as $name => $file): ?>

@@ -40,7 +40,7 @@ use Cake\View\HelperRegistry;
 ?>
 
 <nav class="navbar navbar-<?= $class ?><?php if($fixed) echo ' navbar-fixed-'. $fixed; ?>">
-	<div class="container<?php if($fluid) echo '-fluid' ?>">
+	<div class="container<?php if($fluid) echo '-fluid'; ?>">
         	<!-- Brand and toggle get grouped for better mobile display -->
 		<div class="navbar-header ">
 			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
@@ -107,7 +107,6 @@ use Cake\View\HelperRegistry;
 				<?php endforeach; ?>
 			</div><!-- /.navbar-collapse -->
 		<?php endif; ?>
-	</div><!-- /.container-fluid -->
+	</div><!-- /.container -->
 </nav>
-
 <?php if(!empty($help)) echo '</div>'; ?>

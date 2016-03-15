@@ -2,6 +2,7 @@
 namespace SiteManager\View\Helper;
 
 use Cake\View\Helper;
+use \Datetime;
 
 /**
  * SiteManager helper
@@ -57,7 +58,45 @@ class SiteManagerHelper extends Helper
 
 	// CHANGES SINGLE LINE TO <BR>
 	public function autoParagraph($text = null) {
+		  // EOL to BR
 		$ret_text = str_replace(PHP_EOL, '<br />', $text);
+		
+		  // EMAIL ADDRESSESS
+		$ret_text = preg_replace('/\s(\S+@\S+)\s/', ' <a href="mailto:$1">$1</a> ', $ret_text);
+		
+		  // LINKS WITH TITLE - {{TITLE}}ANYURLHERE
+		$ret_text = preg_replace("/(?i){{([\w\s]+)::((?:[a-z][\w-]+:(?:\/{1,3}|[a-z0-9%])|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}\/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'\".,<>?«»“”‘’]))}}/", '<a href="$2">$1</a>', $ret_text);
+		
+		  // LINKS WITHOUT TITLE - ANYURLHERE
+		$ret_text = preg_replace("/(?i)\s((?:[a-z][\w-]+:(?:\/{1,3}|[a-z0-9%])|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}\/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'\".,<>?«»“”‘’]))\s/", ' <a href="$1">$1</a> ', $ret_text);
+		
+		  // IF DATE IN PAST   - RETURNS YEARS
+		  // IF DATE IN FUTURE - RETURNS DAYS, MONTHS, YEARS UNTIL
+		  // FORMAT - {{MM/DD/YYYY}}
+		preg_match_all('|{{([0-9]{2})/([0-9]{2})/([0-9]{4})}}|', $ret_text, $matches);
+		$i = 0;
+		foreach($matches[0] as $match) {
+			$d1 = new DateTime($matches[3][$i].'-'.$matches[1][$i].'-'.$matches[2][$i]);
+			$d2 = new DateTime();
+			
+			if($d1 >= $d2) {
+				$diff = $d2->diff($d1);
+				$out = '';
+				if($diff->y > 1)  $out .= $diff->y .' years, ';
+				if($diff->y == 1) $out .= $diff->y .' year, ';
+				if($diff->m > 1)  $out .= $diff->m .' months, ';
+				if($diff->m == 1) $out .= $diff->m .' month, ';
+				if($out != '') $out .= 'and ';
+				if($diff->d == 1) $out .= $diff->d .' day, ';
+				else $out .= $diff->d .' days';
+				$ret_text = preg_replace('|'. $match .'|', $out, $ret_text);
+			} else {
+				$diff = $d1->diff($d2);
+				$ret_text = preg_replace('|'. $match .'|', $diff->y, $ret_text);
+			}
+			$i++;
+		}
+		
 		return $ret_text;
 	}
 }

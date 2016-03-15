@@ -20,7 +20,8 @@ use Cake\View\HelperRegistry;
 				'brand' => ['[\'name\' => \'Brand\']','The brand name and logo (<code>[\'name\' => \'Your Brand\', \'logo\' => \'logo.png\']</code>).'],
 				'navs'  => ['[\'nav\' => [\'links\' => [], \'right\' => true, \'show\' => \'all\']]','An array of navs for the navbar. Set <code>right</code> to true to pull a nav to the right.'],
 				'links' => ['[\'Link\' => \'/\', \'Link 2\' => \'/\']','The array of links for a nav (used in <code>navs</code> above).'],
-				'show'  => ['"all"', 'Whether or not the nav is displayed (<code>"all"</code> = Everyone, <code>"user"</code> = Logged in users, <code>"admin"</code> = Administrators).']
+				'show'  => ['"all"', 'Whether or not the nav is displayed (<code>"all"</code> = Everyone, <code>"user"</code> = Logged in users, <code>"admin"</code> = Administrators).'],
+				'id'    => ['"navbar-collapse-1"', 'ID for collapse button, required if using more than one navbar.']
 			]
 		]);
 	}
@@ -32,6 +33,7 @@ use Cake\View\HelperRegistry;
 	if(!isset($fluid)) $fluid = true;
 	if(!isset($brand)) $brand = ['name' => 'Brand'];
 	if(!isset($navs))  $navs  = ['nav' => ['links' => ['Link' => '/', 'Link 2' => '/'], 'right' => true, 'show' => 'all']];
+	if(!isset($id))    $id    = "navbar-collapse-1";
 	
 	$this->loadHelper('User');
 	
@@ -43,7 +45,7 @@ use Cake\View\HelperRegistry;
 	<div class="container<?php if($fluid) echo '-fluid'; ?>">
         	<!-- Brand and toggle get grouped for better mobile display -->
 		<div class="navbar-header ">
-			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#<?= $id ?>" aria-expanded="false">
 				<span class="sr-only">Toggle navigation</span>
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
@@ -61,7 +63,7 @@ use Cake\View\HelperRegistry;
 		
 		<?php if($navs): ?>
 			<!-- Collect the nav links, forms, and other content for toggling -->
-			<div class="collapse navbar-collapse" id="navbar-collapse-1">
+			<div class="collapse navbar-collapse" id="<?= $id ?>">
 				<?php foreach($navs as $nav): ?>
 					<?php if(!isset($nav['show'])) $nav['show'] = 'all'; ?>
 					<?php if(($nav['show'] == 'all') || (($nav['show'] == 'user') && (!empty($user))) || (!empty($admin))): ?>

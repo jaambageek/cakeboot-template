@@ -68,7 +68,15 @@ use Cake\View\HelperRegistry;
 						<?php if(empty($nav['dropdown'])): ?>
 							<ul class="nav navbar-nav<?php if(isset($nav['right'])) echo ' navbar-right' ?>">
 								<?php foreach($nav['links'] as $name => $link): ?>
-									<li><a href="<?= $link ?>"><?= $name ?></a></li>
+									<?php
+										// CHECK ACTIVE LINK LOGIC
+										$active = '';
+										// HOME BUTTON
+										if(($link == '/') && ($this->request->here == '/')) $active = ' class="active"';
+										// OTHER
+										if(($link != '/') && (strpos($this->request->here, $link) !== false)) $active = ' class="active"';
+									?>
+									<li<?= $active ?>><a href="<?= $link ?>"><?= $name ?></a></li>
 								<?php endforeach; ?>
 							</ul>
 						<?php else: ?>
@@ -82,7 +90,13 @@ use Cake\View\HelperRegistry;
 											<?php elseif($link == 'header'): ?>
 												<li class="dropdown-header"><?= $name ?></li>
 											<?php else: ?>
-												<li><a href="<?= $link ?>"><?= $name ?></a></li>
+												<?php
+													// CHECK ACTIVE LINK LOGIC
+													$active = '';
+													// DROPDOWNS
+													if(strpos($this->request->here, $link) !== false) $active = ' class="active"';
+												?>
+												<li<?= $active ?>><a href="<?= $link ?>"><?= $name ?></a></li>
 											<?php endif;?>
 										<?php endforeach; ?>
 									</ul>

@@ -64,11 +64,11 @@ class SiteManagerHelper extends Helper
 		  // EMAIL ADDRESSESS
 		$ret_text = preg_replace('/\s(\S+@\S+)\s/', ' <a href="mailto:$1">$1</a> ', $ret_text);
 		
-		  // LINKS WITH TITLE - {{TITLE}}ANYURLHERE
-		$ret_text = preg_replace("/(?i){{([\w\s]+)::((?:[a-z][\w-]+:(?:\/{1,3}|[a-z0-9%])|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}\/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'\".,<>?«»“”‘’]))}}/", '<a href="$2">$1</a>', $ret_text);
+		  // LINKS WITH TITLE - {{TITLE::ANYURLHERE}}
+		$ret_text = preg_replace("/{{(.+)::(.+)}}/U", '<a href="$2" target="_blank">$1</a>', $ret_text);
 		
 		  // LINKS WITHOUT TITLE - ANYURLHERE
-		$ret_text = preg_replace("/(?i)\s((?:[a-z][\w-]+:(?:\/{1,3}|[a-z0-9%])|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}\/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'\".,<>?«»“”‘’]))\s/", ' <a href="$1">$1</a> ', $ret_text);
+		$ret_text = preg_replace("/(?i)\s((?:[a-z][\w-]+:(?:\/{1,3}|[a-z0-9%])|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}\/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'\".,<>?«»“”‘’]))\s/", ' <a href="$1" target="_blank">$1</a> ', $ret_text);
 		
 		  // IF DATE IN PAST   - RETURNS YEARS
 		  // IF DATE IN FUTURE - RETURNS DAYS, MONTHS, YEARS UNTIL

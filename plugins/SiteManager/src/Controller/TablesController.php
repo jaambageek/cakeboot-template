@@ -65,5 +65,19 @@
         }
         $this->redirect('/sitemgr/tables');
       }
+	  
+	  public function mark($table = null, $migration = null) {
+        if($table == 'local') {
+          $source = '../config/Migrations';
+        }
+		
+        $migrations = new Migrations(['source' => $source]);
+        if($migrations->markMigrated($migration)) {
+          $this->Flash->success('Tables marked updated.');
+        } else {
+          $this->Flash->error('Table mark failed.');
+        }
+        $this->redirect('/sitemgr/tables');
+      }
 	}
 ?>

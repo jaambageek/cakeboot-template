@@ -134,5 +134,35 @@
 			}
 			return $this->redirect($this->referer());
 		}
+		
+		// SYNC ALL DEVELOPMENT FILES TO PRODUCTION
+		public function sync($id = null) {
+			$folder = new Folder();
+			
+			$folders_to_copy = [
+	    		'f1' => ['dev' => '../src',     'prod' => '../../production/src'],
+	    		'f2' => ['dev' => '../plugins', 'prod' => '../../production/plugins'],
+	    		'f3' => ['dev' => '../webroot', 'prod' => '../../production/webroot'],
+	    		'f4' => ['dev' => '../config',  'prod' => '../../production/config']
+	    	];
+			
+			$pass = 0;
+			$fail = 0;
+			foreach($folders_to_copy as $ftc) {
+				$p = new Folder($ftc['prod']);
+				$d = new Folder($ftc['dev']);
+				if($folder->copy(['to' => $p->pwd(), 'from' => $d->pwd(), 'scheme' => Folder::MERGE]))
+					$pass ++;
+				else $fail ++;
+			}
+			if($fail == 0) {
+				$this->Flash->success(__('Production updated successfully.'));
+			} else {
+				$errors = '';
+				foreach($folder->errors() as $error) $errors .= ' : '. $error;
+				$this->Flash->error(__('Unable to update {0} folders on production. Errors'. $errors, $fail));
+			}
+			return $this->redirect($this->referer());
+		}
 	}
 ?>

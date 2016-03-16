@@ -16,8 +16,11 @@ function updateModal(path)
           $('#theModal').modal('show');
      }
    });
-
 }
+
+$(function () {
+  $('[data-toggle="popover"]').popover()
+});
 
 <?php if(!empty($GLOBALS['page_script'])) echo $GLOBALS['page_script']; ?>
 </script>

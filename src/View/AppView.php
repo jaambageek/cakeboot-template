@@ -37,8 +37,9 @@ class AppView extends View
     public function initialize()
     {
     	$this->loadHelper('Html');
+		$this->loadHelper('Paginator', ['templates' => 'SiteManager.paginator-templates']);
     	$this->loadHelper('Form', ['templates' => 'SiteManager.app_form']);
-      $this->loadHelper('CakeDC/Users.User');
-      $this->loadHelper('SiteManager.SiteManager');
+    	$this->loadHelper('CakeDC/Users.User');
+    	$this->loadHelper('SiteManager.SiteManager');
     }
 }

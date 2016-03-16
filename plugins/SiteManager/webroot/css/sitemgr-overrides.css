@@ -80,6 +80,11 @@ body {
     color: #444444;
 }
 
+/* ACTIONS TD - USED FOR BUTTONS IN TABLES */
+td.actions {
+	width: 100px;
+	padding-left: 0px;
+	padding-right: 0px;
 
 /* BOOTSTRAP CALLOUTS */
 

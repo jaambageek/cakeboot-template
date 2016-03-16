@@ -9,7 +9,7 @@ use \Datetime;
  */
 class SiteManagerHelper extends Helper
 {
-  public $helpers = ['CakeDC/Users.User'];
+  public $helpers = ['CakeDC/Users.User', 'Text'];
     /**
      * return the SiteManager menu
      * @return array
@@ -58,22 +58,16 @@ class SiteManagerHelper extends Helper
 
 	// CHANGES SINGLE LINE TO <BR>
 	public function autoParagraph($text = null) {
+		  // EMAIL ADDRESSESS - DO THIS FIRST BECAUSE IT ALSO REMOVES HTML
+		$ret_text = $this->Text->autoLinkEmails($text);
+		
 		  // EOL to BR
-		$ret_text = str_replace(PHP_EOL, '<br />', $text);
-		
-		  // EMAIL ADDRESSESS
-		$ret_text = preg_replace('/\s(\S+@\S+)\s/', ' <a href="mailto:$1">$1</a> ', $ret_text);
-		
-		  // LINKS WITH TITLE - {{TITLE::ANYURLHERE}}
-		$ret_text = preg_replace("/{{(.+)::(.+)}}/U", '<a href="$2" target="_blank">$1</a>', $ret_text);
-		
-		  // LINKS WITHOUT TITLE - ANYURLHERE
-		$ret_text = preg_replace("/(?i)\s((?:[a-z][\w-]+:(?:\/{1,3}|[a-z0-9%])|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}\/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'\".,<>?«»“”‘’]))\s/", ' <a href="$1" target="_blank">$1</a> ', $ret_text);
+		$ret_text = str_replace(PHP_EOL, '<br />', $ret_text);
 		
 		  // IF DATE IN PAST   - RETURNS YEARS
 		  // IF DATE IN FUTURE - RETURNS DAYS, MONTHS, YEARS UNTIL
 		  // FORMAT - {{MM/DD/YYYY}}
-		preg_match_all('|{{([0-9]{2})/([0-9]{2})/([0-9]{4})}}|', $ret_text, $matches);
+		preg_match_all('|{{([0-9]{2})/([0-9]{2})/([0-9]{4})}}|U', $ret_text, $matches);
 		$i = 0;
 		foreach($matches[0] as $match) {
 			$d1 = new DateTime($matches[3][$i].'-'.$matches[1][$i].'-'.$matches[2][$i]);
@@ -96,6 +90,12 @@ class SiteManagerHelper extends Helper
 			}
 			$i++;
 		}
+		
+		  // LINKS WITH TITLE - {{TITLE::ANYURLHERE}}
+		$ret_text = preg_replace("/{{(.+)::(.+)}}/U", '<a href="$2" target="_blank">$1</a>', $ret_text);
+		
+		  // LINKS WITHOUT TITLE - ANYURLHERE
+		$ret_text = preg_replace("/(?i)\s((?:[a-z][\w-]+:(?:\/{1,3}|[a-z0-9%])|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}\/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'\".,<>?«»“”‘’]))\s/", ' <a href="$1" target="_blank">$1</a> ', $ret_text);
 		
 		return $ret_text;
 	}

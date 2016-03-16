@@ -98,7 +98,7 @@
 						<td><?= $name; ?></td>
 						<td><?php if(!empty($file['dev_date'])) echo $file['dev_date']->nice(); ?></td>
 						<td><?php if(!empty($file['prod_date'])) echo $file['prod_date']->nice(); ?></td>
-						<td><?= $actions ?></td>
+						<td class="actions"><?= $actions ?></td>
 					</tr>
 				<?php endforeach; ?>
 			</tbody>

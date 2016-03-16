@@ -27,7 +27,6 @@ use Cake\View\HelperRegistry;
 	}
 
 	/* INITIALIZE DEFAULTS */
-	
 	if(!isset($class)) $class = 'default';
 	if(!isset($fixed)) $fixed = false;
 	if(!isset($fluid)) $fluid = true;

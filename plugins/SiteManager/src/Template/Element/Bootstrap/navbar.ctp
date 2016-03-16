@@ -16,7 +16,7 @@ use Cake\View\HelperRegistry;
 			'options' => [
 				'class' => ['"default"','Navbar style (<code>"default"</code>, <code>"inverted"</code>).'],
 				'fixed' => ['false','Whether or not the navbar is fixed to the top/bottom of the page (<code>"top"</code>, <code>"bottom"</code>).'],
-				'fluid' => ['true', 'Whether or not the inner container is <code>container-fluid</code> or just <code>container</code>'],
+				'fluid' => ['true', 'Whether the navbar should use <code>container-fluid</code> or <code>container</code>'],
 				'brand' => ['[\'name\' => \'Brand\']','The brand name and logo (<code>[\'name\' => \'Your Brand\', \'logo\' => \'logo.png\']</code>).'],
 				'navs'  => ['[\'nav\' => [\'links\' => [], \'right\' => true, \'show\' => \'all\']]','An array of navs for the navbar. Set <code>right</code> to true to pull a nav to the right.'],
 				'links' => ['[\'Link\' => \'/\', \'Link 2\' => \'/\']','The array of links for a nav (used in <code>navs</code> above).'],
@@ -41,7 +41,7 @@ use Cake\View\HelperRegistry;
 ?>
 
 <nav class="navbar navbar-<?= $class ?><?php if($fixed) echo ' navbar-fixed-'. $fixed; ?>">
-	<div class="container<?php if($fluid) echo '-fluid'; ?>">
+	<div class="container<?php if($fluid) echo '-fluid' ?>">
         	<!-- Brand and toggle get grouped for better mobile display -->
 		<div class="navbar-header ">
 			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#<?= $id ?>" aria-expanded="false">
@@ -110,5 +110,4 @@ use Cake\View\HelperRegistry;
 		<?php endif; ?>
 	</div><!-- /.container -->
 </nav>
-
 <?php if(!empty($help)) echo '</div>'; ?>

@@ -2,6 +2,7 @@
 	namespace SiteManager\Controller;
 
 	use SiteManager\Controller\AppController;
+	use Cake\View\Helper\UrlHelper;
 	use Cake\Filesystem\Folder;
 	use Cake\Filesystem\File;
 	use Cake\I18n\Time;
@@ -10,6 +11,11 @@
 	{
 	    public function index()
 	    {
+	    	if(strpos(UrlHelper::build('/',true), 'dev') == false) {
+	    		$this->set('files', []);
+				$this->set('stats', []);
+				return;
+	    	}
 	    	$files = [];
 			
 	    	$dev_folders_to_check = [

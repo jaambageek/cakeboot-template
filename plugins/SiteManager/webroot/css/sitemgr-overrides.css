@@ -14,39 +14,35 @@ body {
 	padding: 5px 10px;
 }
 
-li a {
+.nav-readme li a {
 	border-left: 2px solid rgba(0,0,0,0);
 }
 
-li.active a.top {
+.nav-readme li.active a.top {
 	border-left: 2px solid #428BCA;
 }
 
-li.sub {
+.nav-readme li.sub {
 	display:none;
 	margin-left: 10px;
 }
 
-li.active li.sub {
+.nav-readme li.active li.sub {
 	display:block;
 }
 
-li.sub a {
+.nav-readme li.sub a {
 	border-left: 2px solid rgba(0,0,0,0);
 	font-size: 12px;
 }
 
-li.sub.active a {
+.nav-readme li.sub.active a {
 	border-left: 2px solid #428BCA;
 }
 
 /* ARTIFACTS */
 .artifact-public {
 	display:block;
-}
-
-.edit-button {
-	display:none;
 }
 
 .edit-box {
@@ -67,16 +63,6 @@ li.sub.active a {
 
 .artifact-edit:hover .edit-box{
 	background-color: rgba(40,40,40, 0.2);
-}
-
-.artifact-edit:hover .edit-button {
-	display:block;
-	position:absolute;
-	left:50%;
-	top:50%;
-	z-index:205;
-	margin-top:-15px;
-	margin-left:-20px;
 }
 
 /* ELEMENT HELP-BOX */

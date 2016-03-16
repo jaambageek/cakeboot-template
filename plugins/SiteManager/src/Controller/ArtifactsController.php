@@ -5,6 +5,12 @@
 
 	class ArtifactsController extends AppController
 	{
+		  // TOGGLE THE EDIT MODE
+		public function mode() {
+			$this->request->session()->write('edit_mode', !$this->request->session()->read('edit_mode'));
+			$this->redirect($this->referer());
+		}
+		
 	    public function editText($id = null) {
 	    	$this->viewBuilder()->layout('ajax');
 			if(!is_numeric($id)) {

@@ -40,6 +40,18 @@ body {
 	border-left: 2px solid #428BCA;
 }
 
+/* EDIT MODE TOGGLE */
+#edit-toggle {
+	position:fixed;
+	left: 0;
+	bottom: 0;
+	z-index: 500;
+	background-color:#F0AD4E;
+	border-top-right-radius: 8px;
+	padding: 8px;
+	vertical-align: baseline;
+}
+
 /* ARTIFACTS */
 .artifact-public {
 	display:block;

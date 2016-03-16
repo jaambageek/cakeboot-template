@@ -94,8 +94,8 @@ class SiteManagerHelper extends Helper
 		  // LINKS WITH TITLE - {{TITLE::ANYURLHERE}}
 		$ret_text = preg_replace("/{{(.+)::(.+)}}/U", '<a href="$2" target="_blank">$1</a>', $ret_text);
 		
-		  // LINKS WITHOUT TITLE - ANYURLHERE
-		$ret_text = preg_replace("/(?i)\s((?:[a-z][\w-]+:(?:\/{1,3}|[a-z0-9%])|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}\/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'\".,<>?«»“”‘’]))\s/", ' <a href="$1" target="_blank">$1</a> ', $ret_text);
+		  // LINKS WITHOUT TITLE - {{ANYURLHERE}}
+		$ret_text = preg_replace("/{{(.+)}}/U", '<a href="$1" target="_blank">$1</a>', $ret_text);
 		
 		return $ret_text;
 	}

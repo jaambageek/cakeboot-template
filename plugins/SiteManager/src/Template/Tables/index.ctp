@@ -31,12 +31,15 @@
   	if(!empty($local)) {
 	  	$update = false;
 	  	foreach($local as $migration) {
-			if(($migration['name']) && ($migration['status'] == 'down')) {
-				$update = true;
-			}
+	  		if($migration['name'] != '') {
+	  			echo "<br /> ". $migration['name'] ." ";
+				if(($migration['name']) && ($migration['status'] == 'down')) {
+					echo $this->Html->link('Update', '/sitemgr/tables/setup/local') .' | '. $this->Html->link('Mark Updated', '/sitemgr/tables/mark/local/'. $migration['id']);
+				} else {
+					echo $this->Html->link('Remove Tables', '/sitemgr/tables/remove/local');
+				}
+	  		}
 		}
-		if($update) echo $this->Html->link('Update', '/sitemgr/tables/setup/local');
-		else echo $this->Html->link('Remove Tables', '/sitemgr/tables/remove/local');
 	}
   ?>
 </p>

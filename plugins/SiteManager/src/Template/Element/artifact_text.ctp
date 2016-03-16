@@ -26,7 +26,7 @@
 	<?php if(empty($artifact)): ?>
 		Empty Artifact
 	<?php else: ?>
-		<?= $this->SiteManager->autoParagraph($this->Text->autoLink($artifact->content)); ?>
+		<?= $this->SiteManager->autoParagraph($artifact->content); ?>
 	<?php endif; ?>
 
 	<?php if(($role == 'owner') || ($admin)): ?>

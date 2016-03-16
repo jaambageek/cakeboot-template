@@ -16,8 +16,13 @@
 	
 	$role  = $this->User->role();
 	$admin = $this->User->admin();
+	
+	if($this->request->session()->check('edit_mode'))
+		$mode = $this->request->session()->read('edit_mode');
+	else 
+		$mode = false;
 
-	if(($role == 'owner') || ($admin)) $this_mode = 'edit';
+	if((($role == 'owner') || ($admin)) && ($mode)) $this_mode = 'edit';
 	else $this_mode = 'public';
 ?>
 
@@ -29,7 +34,7 @@
 		<?= $this->SiteManager->autoParagraph($this->Text->autoLink($artifact->content)); ?>
 	<?php endif; ?>
 
-	<?php if(($role == 'owner') || ($admin)): ?>
+	<?php if($this_mode == 'edit'): ?>
 		<span class="edit-box" onclick="updateModal('/sitemgr/artifacts/edit_image/<?= $id ?>')"></span>
 	<?php endif; ?>
 </span>

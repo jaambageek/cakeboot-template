@@ -6,15 +6,19 @@
 	 * Any other path will go to Prod database, set name for prod
 	 */
 	 
-	$my_domain = '.your_domain.com';
 	$db_user     = 'your_db_user';
 	$db_password = 'your_password';
+	$my_domain = '.your_domain.com';
 	if(strpos($_SERVER['SERVER_NAME'], 'dev') !== false) {
 		$database = 'dev_db';
 		$debug = true;
+	} else if(strpos($_SERVER['SERVER_NAME'], $my_domain) !== false) {
+		$database = 'prod_db';
+		$debug = false;
 	} else {
 		$database = 'prod_db';
 		$debug = false;
+		$my_domain = '.the_client_domain.com';
 	}
 
 return [

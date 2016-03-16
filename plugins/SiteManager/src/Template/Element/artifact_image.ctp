@@ -30,10 +30,6 @@
 	<?php endif; ?>
 
 	<?php if(($role == 'owner') || ($admin)): ?>
-<<<<<<< HEAD
 		<span class="edit-box" onclick="updateModal('/sitemgr/artifacts/edit_image/<?= $id ?>')"></span>
-=======
-		<span class="edit-box" onclick="updateModal('/sitemgr/artifacts/edit_text/'. $id .')"></span>
->>>>>>> refs/remotes/origin/master
 	<?php endif; ?>
 </span>

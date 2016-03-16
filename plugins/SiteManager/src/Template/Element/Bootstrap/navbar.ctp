@@ -41,11 +41,7 @@ use Cake\View\HelperRegistry;
 ?>
 
 <nav class="navbar navbar-<?= $class ?><?php if($fixed) echo ' navbar-fixed-'. $fixed; ?>">
-<<<<<<< HEAD
 	<div class="container<?php if($fluid) echo '-fluid' ?>">
-=======
-	<div class="container<?php if($fluid) echo '-fluid'; ?>">
->>>>>>> origin/more-bootstrap-updates
         	<!-- Brand and toggle get grouped for better mobile display -->
 		<div class="navbar-header ">
 			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#<?= $id ?>" aria-expanded="false">
@@ -112,11 +108,6 @@ use Cake\View\HelperRegistry;
 				<?php endforeach; ?>
 			</div><!-- /.navbar-collapse -->
 		<?php endif; ?>
-	</div><!-- /.container-fluid -->
+	</div><!-- /.container -->
 </nav>
-<<<<<<< HEAD
 <?php if(!empty($help)) echo '</div>'; ?>
-=======
-
-<?php if(!empty($help)) echo '</div>'; ?>
->>>>>>> refs/remotes/origin/master

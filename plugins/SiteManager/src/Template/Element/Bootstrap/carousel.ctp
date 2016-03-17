@@ -8,7 +8,7 @@
 			'options' => [
 				'id'          => ['"my-carousel"','The id for the carousel, do not reuse the same id on the same page.'],
 				'title'       => ['""','A title for the carousel. Will be displayed below the element.'],
-				'images'      => ['[\'images\' => [\'path\' => \'logo.png\', \'alt\' => \'Some picture\', \'caption\' => \'My Test Pic\']]','An array of images to display in the carousel.']
+				'images'      => ['[\'images\' => [\'path\' => \'logo.png\', \'alt\' => \'Some picture\', \'caption\' => \'My Test Pic\', \'title\' => false]]','An array of images to display in the carousel.']
 			]
 		]);
 	}
@@ -16,7 +16,7 @@
 	/* INITIALIZE DEFAULTS */
 	
 	if(!isset($id)) $id = 'my-carousel';
-	if(!isset($images)) $images = ['images' => ['path' => 'logo.png', 'alt' => 'Some picture', 'caption' => 'My Test Pic']];
+	if(!isset($images)) $images = ['images' => ['path' => 'logo.png', 'alt' => 'Some picture', 'caption' => 'My Test Pic', 'title' => false]];
 	if(!isset($title)) $title = '';
 ?>
 
@@ -37,7 +37,10 @@
 			<div class="item<?php if($num == 0) echo ' active' ?>">
 				<img src="/img/<?= $image['path'] ?>"<?php if(!empty($image['alt'])) echo ' alt="'. $image['alt'] .'"'; ?>>
 				<div class="carousel-caption">
-					<?= $image['caption'] ?>
+					<?php if($image['title']): ?>
+						<h3><?= $image['title'] ?></h3>
+					<?php endif; ?>
+					<p><?= $image['caption'] ?></p>
 				</div>
 			</div>
 			<?php $num++; ?>

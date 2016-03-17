@@ -73,7 +73,7 @@ use Cake\View\HelperRegistry;
 										// CHECK ACTIVE LINK LOGIC
 										$active = '';
 										// HOME BUTTON
-										if(($link == '/') && ($this->request->here == '/') || ($this->request->here == '/production/')) $active = ' class="active"';
+										if(($link == '/') && (($this->request->here == '/') || ($this->request->here == '/production/'))) $active = ' class="active"';
 										// OTHER
 										if(($link != '/') && (strpos($this->request->here, $link) !== false)) $active = ' class="active"';
 									?>

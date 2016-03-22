@@ -37,7 +37,7 @@
 			<div class="item<?php if($num == 0) echo ' active' ?>">
 				<img src="/img/<?= $image['path'] ?>"<?php if(!empty($image['alt'])) echo ' alt="'. $image['alt'] .'"'; ?>>
 				<div class="carousel-caption">
-					<?php if($image['title']): ?>
+					<?php if(!empty($image['title'])): ?>
 						<h3><?= $image['title'] ?></h3>
 					<?php endif; ?>
 					<p><?= $image['caption'] ?></p>

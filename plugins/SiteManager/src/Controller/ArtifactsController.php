@@ -2,9 +2,12 @@
 	namespace SiteManager\Controller;
 
 	use SiteManager\Controller\AppController;
+	use SiteManager\Controller\Traits\AjaxCrudTrait;
 
 	class ArtifactsController extends AppController
 	{
+		use AjaxCrudTrait;
+		
 		  // TOGGLE THE EDIT MODE
 		public function mode() {
 			$this->request->session()->write('edit_mode', !$this->request->session()->read('edit_mode'));

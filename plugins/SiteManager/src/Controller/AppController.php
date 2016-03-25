@@ -8,6 +8,7 @@
 		public function initialize()
 		{
 	        	parent::initialize();
+				$this->loadComponent('RequestHandler');
 	  }
 	}
 ?>

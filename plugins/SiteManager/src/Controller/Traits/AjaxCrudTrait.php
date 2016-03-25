@@ -35,7 +35,11 @@ trait AjaxCrudTrait
         $tableAlias = $table->alias();
         $this->set($tableAlias, $table);
 		$this->set('tableAlias', $tableAlias);
-        $this->set('_serialize', [$tableAlias, 'tableAlias']);
+        
+		// CREATES A JSON ACCESIBLE RESPONSE
+		$json = $this->$tableAlias->find();
+		$this->set('json', $json);
+        $this->set('_serialize', ['json']);
     }
 
     /**

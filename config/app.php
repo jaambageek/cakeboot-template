@@ -2,7 +2,6 @@
 	/*
 	 * SET THE DATABASE TO USE BASED ON THE PATH
 	 * Dev site path must contain 'dev', set database name for dev
-	 * Test site path must contain 'test', set database name for test
 	 * Any other path will go to Prod database, set name for prod
 	 */
 	 
@@ -265,7 +264,7 @@ return [
              * mysql configuration directive 'innodb_stats_on_metadata = 0'
              * which is the recommended value in production environments
              */
-            //'init' => ['SET GLOBAL innodb_stats_on_metadata = 0'],
+            'init' => ['SET GLOBAL innodb_stats_on_metadata = 0'],
         ],
 
         /**

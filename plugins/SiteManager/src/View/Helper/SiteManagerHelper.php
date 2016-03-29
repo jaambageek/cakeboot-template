@@ -40,6 +40,7 @@ class SiteManagerHelper extends Helper
         return [
           'links' => [
             'Profile' => '/profile',
+            'New Request' => '/sitemgr/tasks',
             'divider1' => 'divider',
             'Logout' => '/logout'
           ],
